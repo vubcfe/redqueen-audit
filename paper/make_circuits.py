@@ -36,8 +36,11 @@ def entangler_columns(g: HostGenome) -> list[list[tuple[int, int]]]:
 
 
 def quantikz(g: HostGenome, label: str, group_labels: bool, readout_label: str,
-             repeat: str | None = None) -> str:
+             repeat: str | None = None, ent_cols: int = 0) -> str:
+    """``ent_cols`` pads the entangler with empty wire columns, so that circuits
+    drawn side by side for comparison have the same width (no gates added)."""
     n, rots, ent = g.n, g.rot_gates, entangler_columns(g)
+    ent = ent + [[]] * max(0, ent_cols - len(ent))
     rows = [[rf"\lstick{{$x_{{{w + 1}}}\;\ket{{0}}$}}"] for w in range(n)]
     enc = ROT[g.enc_gate]
     bw = BAND[g.bandwidth]
@@ -48,6 +51,8 @@ def quantikz(g: HostGenome, label: str, group_labels: bool, readout_label: str,
             rows[w].append(rf"\gate{{{ROT[r]}(\theta_{{{w + 1},{k + 1}}})}}")
     for col in ent:
         cells = [r"\qw"] * n
+        if not col:   # padding column: an empty node as wide as a column of CZ dots
+            cells = [r"|[linecont,minimum width=0.4em,inner sep=0pt]| {} \qw"] * n
         for a, b in col:
             if g.ent_gate == "CZ":
                 cells[a], cells[b] = rf"\ctrl{{{b - a}}}", r"\control{}"
@@ -95,9 +100,10 @@ hea = fixed_hea(8, 1)
              repeat=r"block repeated $L$ times"))
 
 # Fig. results: GA and RED-QUEEN heads selected in the same run
-for m in ("ga", "redqueen"):
-    g, b = best_genome(f"results/paper/{m}_b0.05_s0.json")
+pair = {m: best_genome(f"results/paper/{m}_b0.05_s0.json") for m in ("ga", "redqueen")}
+width = max(len(entangler_columns(g)) for g, _ in pair.values())
+for m, (g, b) in pair.items():
     ro = r"linear $\to$ logits"
-    (OUT / f"circuit_{m}.tex").write_text(quantikz(g, m, False, ro))
+    (OUT / f"circuit_{m}.tex").write_text(quantikz(g, m, False, ro, ent_cols=width))
     print(f"{m}: {g.key()} acc {b['acc']:.4f} MLP M90 {b['audit']['m90']['mlp']} params {b['n_params']} "
           f"2q gates {b['two_qubit_gates']} entangler columns {len(entangler_columns(g))}")
