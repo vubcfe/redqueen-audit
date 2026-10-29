@@ -1,0 +1,37 @@
+# RED-QUEEN on the qml-benchmarks v0.1 datasets (Bowles et al., 2024), same
+# files (generator seed 42), scaling and refit-with-5-seeds scoring as theirs.
+data_root: external/qml-benchmarks/paper/benchmarks
+published_root: external/qml-benchmarks/paper/results
+out_dir: results/qmlbench_paper
+
+# data_dir: folder written by paper/benchmarks/generate_*.py
+# results_dir: folder of the published results for the same files
+benchmarks:
+  - {data_dir: linearly_separable, results_dir: linearly_separable,
+     stems: [linearly_separable_4d, linearly_separable_8d]}
+  - {data_dir: hidden_manifold, results_dir: hidden_manifold,
+     stems: [hidden_manifold-6manifold-4d, hidden_manifold-6manifold-8d]}
+  - {data_dir: two_curves_diff, results_dir: two_curves,
+     stems: [two_curves-5degree-0.1offset-4d, two_curves-5degree-0.1offset-8d]}
+
+methods: [random, ga, redqueen]
+seeds: [0, 1, 2]
+
+host_steps: 300
+host_lr: 0.05
+
+pop_size: 16
+generations: 10
+offspring: 14
+crossover_rate: 0.5
+use_archive: true
+gate_threshold: 1.0e-4
+gate_draws: 8
+
+parasite_pop: 8
+hof_size: 8
+parasite_m_panel: [4, 8, 16, 32]
+parasite_kinds: [fourier, rff]
+lam: 0.2
+
+audit: true

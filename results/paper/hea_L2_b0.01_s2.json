@@ -1,0 +1,182 @@
+{
+ "method": "hea_L2",
+ "budget": 0.01,
+ "seed": 2,
+ "sizes": {
+  "labeled": 193,
+  "search_train": 154,
+  "search_val": 39,
+  "pool_fit": 3000,
+  "pool_eval": 2000,
+  "pool_audit": 4000,
+  "test": 2759
+ },
+ "pca_explained": 0.5352691411972046,
+ "config": {
+  "features": "features/eurosat_ms_resnet50.npz",
+  "out_dir": "results/paper",
+  "view": "resnet",
+  "n_qubits": 8,
+  "n_pool_fit": 3000,
+  "n_pool_eval": 2000,
+  "host_steps": 150,
+  "host_lr": 0.05,
+  "pop_size": 16,
+  "generations": 10,
+  "offspring": 14,
+  "crossover_rate": 0.5,
+  "use_archive": true,
+  "gate_threshold": 0.0001,
+  "gate_draws": 8,
+  "parasite_pop": 8,
+  "hof_size": 8,
+  "parasite_m_panel": [
+   8,
+   16,
+   32,
+   64
+  ],
+  "parasite_kinds": [
+   "fourier",
+   "rff"
+  ],
+  "lam": 0.2,
+  "audit": true,
+  "mlp_params": [
+   100,
+   150,
+   200,
+   300,
+   450,
+   600
+  ],
+  "rff_m": [
+   8,
+   16,
+   32,
+   64
+  ],
+  "methods": [
+   "classical",
+   "hea_L1",
+   "hea_L2",
+   "random",
+   "ga",
+   "redqueen"
+  ],
+  "budgets": [
+   0.01,
+   0.05,
+   0.1
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "best": {
+  "genome": {
+   "n": 8,
+   "enc_gate": "RY",
+   "bandwidth": 1.0,
+   "layers": 2,
+   "rot": "RZRYRZ",
+   "edges": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     0
+    ]
+   ],
+   "ent_gate": "CZ",
+   "readout": "Z"
+  },
+  "key": "RY|1.0|L2|RZRYRZ|CZ[01-12-23-34-45-56-67-70]|Z",
+  "n_params": 138,
+  "two_qubit_gates": 16,
+  "acc_train": 0.7922077775001526,
+  "acc_val": 0.5897436141967773,
+  "acc": 0.5690467560710403,
+  "f1_macro": 0.5367220422328038,
+  "gen_gap": 0.22316102142911232,
+  "audit": {
+   "curves": {
+    "fourier": {
+     "3": 0.4124682856107285,
+     "6": 0.6342877854295035,
+     "12": 0.7256252265313519,
+     "24": 0.7876042044218919,
+     "48": 0.8390721275824574,
+     "96": 0.8782167451975353,
+     "192": 0.8996013048205871
+    },
+    "rff": {
+     "3": 0.367886915549112,
+     "6": 0.46901051105472996,
+     "12": 0.6147154766219645,
+     "24": 0.6589343965204784,
+     "48": 0.7122145704965567,
+     "96": 0.7716563972453787,
+     "192": 0.8289235230155854
+    },
+    "mlp": {
+     "3": 0.48713301920985863,
+     "6": 0.6487857919536064,
+     "12": 0.7067778180500182,
+     "24": 0.7894164552374048,
+     "48": 0.8416092787241753,
+     "96": 0.8865530989488946,
+     "192": 0.9213483146067416
+    }
+   },
+   "m90": {
+    "fourier": 384,
+    "rff": 384,
+    "mlp": 192
+   },
+   "m90_censored": {
+    "fourier": true,
+    "rff": true,
+    "mlp": false
+   },
+   "m90_censor_value": 384,
+   "fourier_spectrum_size": 2000,
+   "unbounded": {
+    "fourier_order3": 0.980427691192461,
+    "rff": 0.9191736136281261,
+    "mlp": 0.9358463211308445
+   }
+  }
+ },
+ "seconds": 12.431398153305054
+}

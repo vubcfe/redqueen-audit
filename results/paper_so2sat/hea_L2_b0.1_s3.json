@@ -1,0 +1,182 @@
+{
+ "method": "hea_L2",
+ "budget": 0.1,
+ "seed": 3,
+ "sizes": {
+  "labeled": 1999,
+  "search_train": 1599,
+  "search_val": 400,
+  "pool_fit": 3000,
+  "pool_eval": 2000,
+  "pool_audit": 4000,
+  "test": 986
+ },
+ "pca_explained": 0.5809440612792969,
+ "config": {
+  "features": "features/so2sat_resnet50.npz",
+  "out_dir": "results/paper_so2sat",
+  "view": "resnet",
+  "n_qubits": 8,
+  "n_pool_fit": 3000,
+  "n_pool_eval": 2000,
+  "host_steps": 150,
+  "host_lr": 0.05,
+  "pop_size": 16,
+  "generations": 10,
+  "offspring": 14,
+  "crossover_rate": 0.5,
+  "use_archive": true,
+  "gate_threshold": 0.0001,
+  "gate_draws": 8,
+  "parasite_pop": 8,
+  "hof_size": 8,
+  "parasite_m_panel": [
+   8,
+   16,
+   32,
+   64
+  ],
+  "parasite_kinds": [
+   "fourier",
+   "rff"
+  ],
+  "lam": 0.2,
+  "audit": true,
+  "mlp_params": [
+   100,
+   150,
+   200,
+   300,
+   450,
+   600
+  ],
+  "rff_m": [
+   8,
+   16,
+   32,
+   64
+  ],
+  "methods": [
+   "classical",
+   "hea_L1",
+   "hea_L2",
+   "random",
+   "ga",
+   "redqueen"
+  ],
+  "budgets": [
+   0.01,
+   0.05,
+   0.1
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "best": {
+  "genome": {
+   "n": 8,
+   "enc_gate": "RY",
+   "bandwidth": 1.0,
+   "layers": 2,
+   "rot": "RZRYRZ",
+   "edges": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     0
+    ]
+   ],
+   "ent_gate": "CZ",
+   "readout": "Z"
+  },
+  "key": "RY|1.0|L2|RZRYRZ|CZ[01-12-23-34-45-56-67-70]|Z",
+  "n_params": 201,
+  "two_qubit_gates": 16,
+  "acc_train": 0.4121325612068176,
+  "acc_val": 0.36249998211860657,
+  "acc": 0.2971602434077079,
+  "f1_macro": 0.2827803502847206,
+  "gen_gap": 0.11497231779910971,
+  "audit": {
+   "curves": {
+    "fourier": {
+     "3": 0.19168356997971603,
+     "6": 0.3620689655172414,
+     "12": 0.49797160243407707,
+     "24": 0.6085192697768762,
+     "48": 0.7383367139959431,
+     "96": 0.8032454361054766,
+     "192": 0.808316430020284
+    },
+    "rff": {
+     "3": 0.17545638945233266,
+     "6": 0.32454361054766734,
+     "12": 0.38539553752535494,
+     "24": 0.48073022312373226,
+     "48": 0.563894523326572,
+     "96": 0.6501014198782962,
+     "192": 0.7586206896551724
+    },
+    "mlp": {
+     "3": 0.3539553752535497,
+     "6": 0.43509127789046653,
+     "12": 0.5801217038539553,
+     "24": 0.6845841784989858,
+     "48": 0.8204868154158215,
+     "96": 0.8600405679513184,
+     "192": 0.8975659229208924
+    }
+   },
+   "m90": {
+    "fourier": 384,
+    "rff": 384,
+    "mlp": 384
+   },
+   "m90_censored": {
+    "fourier": true,
+    "rff": true,
+    "mlp": true
+   },
+   "m90_censor_value": 384,
+   "fourier_spectrum_size": 2000,
+   "unbounded": {
+    "fourier_order3": 0.9523326572008114,
+    "rff": 0.8711967545638946,
+    "mlp": 0.9016227180527383
+   }
+  }
+ },
+ "seconds": 10.915688514709473
+}

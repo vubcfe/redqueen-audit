@@ -1,0 +1,35 @@
+# EuroSAT-MS main study (protocol: docs/DESIGN.md, decision rule in section 9).
+features: features/eurosat_ms_resnet50.npz
+out_dir: results/paper
+view: resnet
+n_qubits: 8
+n_pool_fit: 3000
+n_pool_eval: 2000
+
+# host training
+host_steps: 150
+host_lr: 0.05
+
+# search: 16 + 10 x 14 = 156 host evaluations per run, (mu + lambda) selection
+pop_size: 16
+generations: 10
+offspring: 14
+crossover_rate: 0.5
+use_archive: true
+gate_threshold: 1.0e-4
+gate_draws: 8
+
+# parasites attack every host at every budget of the panel (same for all hosts)
+parasite_pop: 8
+hof_size: 8
+parasite_m_panel: [8, 16, 32, 64]
+parasite_kinds: [fourier, rff]
+lam: 0.2
+
+audit: true
+mlp_params: [100, 150, 200, 300, 450, 600]   # bracket of host sizes
+rff_m: [8, 16, 32, 64]                  # budget-matched RFF-logistic heads
+
+methods: [classical, hea_L1, hea_L2, random, ga, redqueen]
+budgets: [0.01, 0.05, 0.1]
+seeds: [0, 1, 2, 3, 4]

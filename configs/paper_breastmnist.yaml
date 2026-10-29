@@ -1,0 +1,58 @@
+# breastmnist: same protocol as configs/paper.yaml (EuroSAT); see docs/DESIGN.md section 10. Pools fixed to fit the largest label budget (same at every budget).
+features: features/breastmnist_resnet18.npz
+out_dir: results/paper_breastmnist
+view: resnet
+n_qubits: 8
+n_pool_fit: 117
+n_pool_eval: 78
+host_steps: 150
+host_lr: 0.05
+pop_size: 16
+generations: 10
+offspring: 14
+crossover_rate: 0.5
+use_archive: true
+gate_threshold: 0.0001
+gate_draws: 8
+parasite_pop: 8
+hof_size: 8
+parasite_m_panel:
+- 8
+- 16
+- 32
+- 64
+parasite_kinds:
+- fourier
+- rff
+lam: 0.2
+audit: true
+mlp_params:
+- 20
+- 40
+- 60
+- 100
+- 150
+- 300
+rff_m:
+- 8
+- 16
+- 32
+- 64
+methods:
+- classical
+- hea_L1
+- hea_L2
+- random
+- ga
+- redqueen
+budgets:
+- 0.1
+- 0.25
+- 0.5
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+n_pool_audit: 156

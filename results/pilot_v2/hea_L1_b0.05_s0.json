@@ -1,0 +1,191 @@
+{
+ "method": "hea_L1",
+ "budget": 0.05,
+ "seed": 0,
+ "sizes": {
+  "labeled": 965,
+  "search_train": 772,
+  "search_val": 193,
+  "pool_fit": 3000,
+  "pool_eval": 2000,
+  "test": 2759
+ },
+ "pca_explained": 0.5356429219245911,
+ "config": {
+  "features": "features/eurosat_ms_resnet50.npz",
+  "out_dir": "results/pilot_v2",
+  "view": "resnet",
+  "n_qubits": 8,
+  "n_pool_fit": 3000,
+  "n_pool_eval": 2000,
+  "host_steps": 150,
+  "host_lr": 0.05,
+  "pop_size": 12,
+  "generations": 5,
+  "offspring": 10,
+  "elite": 2,
+  "crossover_rate": 0.5,
+  "use_archive": true,
+  "gate_threshold": 0.0001,
+  "gate_draws": 8,
+  "parasite_pop": 6,
+  "hof_size": 6,
+  "kappa": 1.0,
+  "parasite_m_abs": 16,
+  "parasite_kinds": [
+   "fourier",
+   "rff"
+  ],
+  "lam": 0.2,
+  "audit": true,
+  "mlp_params": [
+   150,
+   300,
+   600
+  ],
+  "methods": [
+   "classical",
+   "hea_L1",
+   "hea_L2",
+   "ga",
+   "redqueen"
+  ],
+  "budgets": [
+   0.05
+  ],
+  "seeds": [
+   0
+  ]
+ },
+ "best": {
+  "genome": {
+   "n": 8,
+   "enc_gate": "RY",
+   "bandwidth": 1.0,
+   "layers": 1,
+   "rot": "RZRYRZ",
+   "edges": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     0
+    ]
+   ],
+   "ent_gate": "CZ",
+   "readout": "Z"
+  },
+  "key": "RY|1.0|L1|RZRYRZ|CZ[01-12-23-34-45-56-67-70]|Z",
+  "n_params": 114,
+  "two_qubit_gates": 8,
+  "acc_train": 0.8108807802200317,
+  "acc_val": 0.8082901239395142,
+  "acc": 0.7843421529539688,
+  "f1_macro": 0.7661604433846112,
+  "gen_gap": 0.02653862726606293,
+  "audit": {
+   "fourier_k1": {
+    "agree": 0.7455599855019934,
+    "r2": 0.8459097414380999,
+    "m": 5
+   },
+   "rff_k1": {
+    "agree": 0.6284885828198623,
+    "r2": 0.5023271700724155,
+    "m": 5
+   },
+   "mlp_k1": {
+    "agree": 0.8108010148604566,
+    "r2": 0.8945827262515811,
+    "hidden": 5
+   },
+   "fourier_k4": {
+    "agree": 1.0,
+    "r2": 0.9999999999999293,
+    "m": 22
+   },
+   "rff_k4": {
+    "agree": 0.9046756071040232,
+    "r2": 0.9390235557604731,
+    "m": 22
+   },
+   "mlp_k4": {
+    "agree": 0.9539688292859732,
+    "r2": 0.9878631385534047,
+    "hidden": 23
+   },
+   "fourier_m8": {
+    "agree": 1.0,
+    "r2": 0.9999999999999498,
+    "m": 8
+   },
+   "rff_m8": {
+    "agree": 0.8289235230155854,
+    "r2": 0.7831218449986329,
+    "m": 8
+   },
+   "mlp_m8": {
+    "agree": 0.9043131569409206,
+    "r2": 0.9562732556194157,
+    "hidden": 8
+   },
+   "fourier_m32": {
+    "agree": 1.0,
+    "r2": 0.9999999999999214,
+    "m": 32
+   },
+   "rff_m32": {
+    "agree": 0.9115621602029721,
+    "r2": 0.9534328318525841,
+    "m": 32
+   },
+   "mlp_m32": {
+    "agree": 0.9568684305907937,
+    "r2": 0.9900487676404504,
+    "hidden": 34
+   },
+   "fourier_unbounded": {
+    "agree": 1.0,
+    "r2": 0.9999999999961755,
+    "m": 288
+   },
+   "rff_unbounded": {
+    "agree": 0.9945632475534614,
+    "r2": 0.9998661027723977,
+    "m": 2000
+   },
+   "mlp_unbounded": {
+    "agree": 0.9916636462486408,
+    "r2": 0.9994365616284823,
+    "hidden": 512
+   }
+  }
+ },
+ "seconds": 6.847492218017578
+}

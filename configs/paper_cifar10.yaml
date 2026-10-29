@@ -1,0 +1,57 @@
+# cifar10: same protocol as configs/paper.yaml (EuroSAT); see docs/DESIGN.md section 10.
+features: features/cifar10_resnet18.npz
+out_dir: results/paper_cifar10
+view: resnet
+n_qubits: 8
+n_pool_fit: 3000
+n_pool_eval: 2000
+host_steps: 150
+host_lr: 0.05
+pop_size: 16
+generations: 10
+offspring: 14
+crossover_rate: 0.5
+use_archive: true
+gate_threshold: 0.0001
+gate_draws: 8
+parasite_pop: 8
+hof_size: 8
+parasite_m_panel:
+- 8
+- 16
+- 32
+- 64
+parasite_kinds:
+- fourier
+- rff
+lam: 0.2
+audit: true
+mlp_params:
+- 100
+- 150
+- 200
+- 300
+- 450
+- 600
+rff_m:
+- 8
+- 16
+- 32
+- 64
+methods:
+- classical
+- hea_L1
+- hea_L2
+- random
+- ga
+- redqueen
+budgets:
+- 0.01
+- 0.05
+- 0.1
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4

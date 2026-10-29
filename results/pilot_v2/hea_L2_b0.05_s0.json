@@ -1,0 +1,191 @@
+{
+ "method": "hea_L2",
+ "budget": 0.05,
+ "seed": 0,
+ "sizes": {
+  "labeled": 965,
+  "search_train": 772,
+  "search_val": 193,
+  "pool_fit": 3000,
+  "pool_eval": 2000,
+  "test": 2759
+ },
+ "pca_explained": 0.5356429219245911,
+ "config": {
+  "features": "features/eurosat_ms_resnet50.npz",
+  "out_dir": "results/pilot_v2",
+  "view": "resnet",
+  "n_qubits": 8,
+  "n_pool_fit": 3000,
+  "n_pool_eval": 2000,
+  "host_steps": 150,
+  "host_lr": 0.05,
+  "pop_size": 12,
+  "generations": 5,
+  "offspring": 10,
+  "elite": 2,
+  "crossover_rate": 0.5,
+  "use_archive": true,
+  "gate_threshold": 0.0001,
+  "gate_draws": 8,
+  "parasite_pop": 6,
+  "hof_size": 6,
+  "kappa": 1.0,
+  "parasite_m_abs": 16,
+  "parasite_kinds": [
+   "fourier",
+   "rff"
+  ],
+  "lam": 0.2,
+  "audit": true,
+  "mlp_params": [
+   150,
+   300,
+   600
+  ],
+  "methods": [
+   "classical",
+   "hea_L1",
+   "hea_L2",
+   "ga",
+   "redqueen"
+  ],
+  "budgets": [
+   0.05
+  ],
+  "seeds": [
+   0
+  ]
+ },
+ "best": {
+  "genome": {
+   "n": 8,
+   "enc_gate": "RY",
+   "bandwidth": 1.0,
+   "layers": 2,
+   "rot": "RZRYRZ",
+   "edges": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     0
+    ]
+   ],
+   "ent_gate": "CZ",
+   "readout": "Z"
+  },
+  "key": "RY|1.0|L2|RZRYRZ|CZ[01-12-23-34-45-56-67-70]|Z",
+  "n_params": 138,
+  "two_qubit_gates": 16,
+  "acc_train": 0.7227979302406311,
+  "acc_val": 0.6321243643760681,
+  "acc": 0.6513229430953243,
+  "f1_macro": 0.6274351668256307,
+  "gen_gap": 0.07147498714530676,
+  "audit": {
+   "fourier_k1": {
+    "agree": 0.6230518303733237,
+    "r2": 0.7185833515571995,
+    "m": 6
+   },
+   "rff_k1": {
+    "agree": 0.5415005436752447,
+    "r2": 0.5550055543582553,
+    "m": 6
+   },
+   "mlp_k1": {
+    "agree": 0.6926422616890178,
+    "r2": 0.7935387408283485,
+    "hidden": 7
+   },
+   "fourier_k4": {
+    "agree": 0.7908662558898152,
+    "r2": 0.8903819970089689,
+    "m": 27
+   },
+   "rff_k4": {
+    "agree": 0.7350489307720188,
+    "r2": 0.8080363496493674,
+    "m": 27
+   },
+   "mlp_k4": {
+    "agree": 0.7981152591518665,
+    "r2": 0.9104029015175172,
+    "hidden": 29
+   },
+   "fourier_m8": {
+    "agree": 0.6462486408118884,
+    "r2": 0.7374530375188864,
+    "m": 8
+   },
+   "rff_m8": {
+    "agree": 0.607466473359913,
+    "r2": 0.6007706849903713,
+    "m": 8
+   },
+   "mlp_m8": {
+    "agree": 0.6817687567959405,
+    "r2": 0.792701900011126,
+    "hidden": 8
+   },
+   "fourier_m32": {
+    "agree": 0.79014135556361,
+    "r2": 0.8913491962261988,
+    "m": 32
+   },
+   "rff_m32": {
+    "agree": 0.7600579920260964,
+    "r2": 0.8273427342334092,
+    "m": 32
+   },
+   "mlp_m32": {
+    "agree": 0.8314606741573034,
+    "r2": 0.93898058813523,
+    "hidden": 34
+   },
+   "fourier_unbounded": {
+    "agree": 0.9383834722725625,
+    "r2": 0.9860771174616492,
+    "m": 2000
+   },
+   "rff_unbounded": {
+    "agree": 0.9427328742297933,
+    "r2": 0.9868053851355453,
+    "m": 2000
+   },
+   "mlp_unbounded": {
+    "agree": 0.9463573758608191,
+    "r2": 0.9927459482329188,
+    "hidden": 512
+   }
+  }
+ },
+ "seconds": 8.305978298187256
+}

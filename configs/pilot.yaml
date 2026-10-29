@@ -1,0 +1,34 @@
+# Small, fast configuration to check the pipeline end to end.
+features: features/eurosat_ms_resnet50.npz
+out_dir: results/pilot
+view: resnet
+n_qubits: 8
+n_pool_fit: 3000
+n_pool_eval: 2000
+
+# host training
+host_steps: 150
+host_lr: 0.05
+
+# search
+pop_size: 12
+generations: 5
+offspring: 10
+crossover_rate: 0.5
+use_archive: true
+gate_threshold: 1.0e-4
+gate_draws: 8
+
+# parasites
+parasite_pop: 6
+hof_size: 6
+parasite_m_abs: 16      # same feature budget for every host
+parasite_kinds: [fourier, rff]
+lam: 0.2
+
+audit: true
+mlp_params: [150, 300, 600]
+
+methods: [classical, hea_L1, hea_L2, ga, redqueen]
+budgets: [0.05]
+seeds: [0]
