@@ -42,10 +42,10 @@ def quantikz(g: HostGenome, label: str, group_labels: bool, readout_label: str,
     enc = ROT[g.enc_gate]
     bw = BAND[g.bandwidth]
     for w in range(n):
-        rows[w].append(rf"\gate[style={{minimum width=1.75cm}}]{{{enc}({bw}x_{{{w + 1}}})}}")
+        rows[w].append(rf"\gate{{{enc}({bw}x_{{{w + 1}}})}}")
     for k, r in enumerate(rots):
         for w in range(n):
-            rows[w].append(rf"\gate[style={{minimum width=1.45cm}}]{{{ROT[r]}(\theta_{{{w + 1},{k + 1}}})}}")
+            rows[w].append(rf"\gate{{{ROT[r]}(\theta_{{{w + 1},{k + 1}}})}}")
     for col in ent:
         cells = [r"\qw"] * n
         for a, b in col:
@@ -60,21 +60,22 @@ def quantikz(g: HostGenome, label: str, group_labels: bool, readout_label: str,
     rows[0].append(rf"\rstick[{n}]{{\footnotesize {readout_label}}}")
     for w in range(1, n):
         rows[w].append("")
-    # one dashed box per part of the block, and one around the whole repeated block
-    n_rot, n_ent = len(rots), max(1, len(ent))
+    # a light background per part of the block (no borders), and one frame
+    # around the whole block that is repeated L times
+    n_rot = len(rots)
     first = rows[0]
-    first[1] += (rf"\gategroup[{n},steps=1,style={{dashed,rounded corners,fill=orange!10,inner xsep=2.5pt,inner ysep=1.5pt}},"
-                 rf"background,label style={{label position=below,anchor=north,yshift=-0.2cm}}]"
-                 rf"{{{'encoding' if group_labels else ''}}}")
-    first[2] += (rf"\gategroup[{n},steps={n_rot},style={{dashed,rounded corners,fill=blue!7,inner xsep=2.5pt,inner ysep=1.5pt}},"
-                 rf"background,label style={{label position=below,anchor=north,yshift=-0.2cm}}]"
-                 rf"{{{'trainable' if group_labels else ''}}}")
+    part = ("{{draw=none,rounded corners=2pt,fill={fill},inner xsep=0.5pt,inner ysep=2pt}},"
+            "background,label style={{label position=above,anchor=south,yshift=0.12cm}}")
+    first[1] += (rf"\gategroup[{n},steps=1,style={part.format(fill='orange!12')}]"
+                 rf"{{{r'\textit{encoding}' if group_labels else ''}}}")
+    first[2] += (rf"\gategroup[{n},steps={n_rot},style={part.format(fill='blue!8')}]"
+                 rf"{{{r'\textit{trainable}' if group_labels else ''}}}")
     if ent:
-        first[2 + n_rot] += (rf"\gategroup[{n},steps={len(ent)},style={{dashed,rounded corners,fill=green!8,inner xsep=2.5pt,inner ysep=1.5pt}},"
-                             rf"background,label style={{label position=below,anchor=north,yshift=-0.2cm}}]"
-                             rf"{{{'entangler' if group_labels else ''}}}")
-    first[1] += (rf"\gategroup[{n},steps={1 + n_rot + len(ent)},style={{draw=black!55,rounded corners,inner xsep=3pt,inner ysep=4pt}},"
-                 rf"label style={{label position=above,anchor=south,yshift=0.05cm}}]"
+        first[2 + n_rot] += (rf"\gategroup[{n},steps={len(ent)},style={part.format(fill='green!10')}]"
+                             rf"{{{r'\textit{entangler}' if group_labels else ''}}}")
+    first[1] += (rf"\gategroup[{n},steps={1 + n_rot + len(ent)},style={{draw=black!45,rounded corners=3pt,"
+                 rf"inner xsep=2pt,inner ysep=5pt}},label style={{label position={'below' if group_labels else 'above'},"
+                 rf"anchor={'north' if group_labels else 'south'},yshift={'-0.05cm' if group_labels else '0.05cm'}}}]"
                  rf"{{{repeat or f'block repeated $L={g.layers}$ times'}}}")
     body = " \\\\\n".join(" & ".join(r) for r in rows)
     return (f"% {label}: {g.key()}\n"
