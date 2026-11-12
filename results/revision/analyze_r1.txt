@@ -1,0 +1,117 @@
+==============================================================================
+A. Censoring of MLP M90 (agreement 0.9 not reached at M = 192)
+dataset       redqueen        ga    random    hea_L1    hea_L2
+EuroSAT        0/15      0/15      0/15      0/15      0/15   
+So2Sat         8/15      0/15      6/15      0/15     13/15   
+UC Merced      2/15      0/15      1/15      0/15     15/15   
+BreastMNIST    8/15      3/15     10/15      1/15     15/15   
+CIFAR-10       0/15      0/15      0/15      0/15      0/15   
+all              18/75      3/75     17/75      1/75     43/75
+all quantum runs: 82/375 censored (21.9%)
+  redqueen vs ga      EuroSAT     : censored redqueen 0, ga 0, both 0, pairs with >=1 censored 0/15
+  redqueen vs ga      So2Sat      : censored redqueen 8, ga 0, both 0, pairs with >=1 censored 8/15
+  redqueen vs ga      UC Merced   : censored redqueen 2, ga 0, both 0, pairs with >=1 censored 2/15
+  redqueen vs ga      BreastMNIST : censored redqueen 8, ga 3, both 3, pairs with >=1 censored 8/15
+  redqueen vs ga      CIFAR-10    : censored redqueen 0, ga 0, both 0, pairs with >=1 censored 0/15
+  redqueen vs ga      Pooled      : censored redqueen 18, ga 3, both 3, pairs with >=1 censored 18/75
+  redqueen vs random  EuroSAT     : censored redqueen 0, random 0, both 0, pairs with >=1 censored 0/15
+  redqueen vs random  So2Sat      : censored redqueen 8, random 6, both 5, pairs with >=1 censored 9/15
+  redqueen vs random  UC Merced   : censored redqueen 2, random 1, both 1, pairs with >=1 censored 2/15
+  redqueen vs random  BreastMNIST : censored redqueen 8, random 10, both 5, pairs with >=1 censored 13/15
+  redqueen vs random  CIFAR-10    : censored redqueen 0, random 0, both 0, pairs with >=1 censored 0/15
+  redqueen vs random  Pooled      : censored redqueen 18, random 17, both 11, pairs with >=1 censored 24/75
+
+==============================================================================
+B. H2 without the M90 = 384 encoding (one-sided: RED-QUEEN harder to imitate)
+
+--- redqueen vs ga
+              sign W/L  p_sign | Wilcoxon p at censor value     193     384     768 | median dM90 at 193/384 | dAgree@12 p | @48 p | @192 p | dAUC (95% CI) p
+EuroSAT         5/3     0.3633 |                            0.1207  0.1207  0.1207 |     +0/    +0 | +0.77pp 0.2132 | +0.47pp 0.2271 | +0.42pp 0.1971 | +0.50pp [-0.73,+1.68] 0.2106
+So2Sat         11/1     0.0032 |                            0.0014  0.0014  0.0014 |   +145/  +288 | +15.02pp 0.0026 | +11.11pp 0.0018 | +7.99pp 0.0018 | +12.47pp [+6.90,+18.00] 0.0014
+UC Merced      11/2     0.0112 |                            0.0054  0.0054  0.0054 |    +42/   +42 | +9.30pp 0.0021 | +6.02pp 0.0032 | +3.21pp 0.0057 | +7.24pp [+3.59,+10.71] 0.0013
+BreastMNIST     8/0     0.0039 |                            0.0057  0.0057  0.0057 |     +3/    +3 | +6.37pp 0.0096 | +6.37pp 0.0062 | +5.21pp 0.0072 | +5.93pp [+2.44,+9.56] 0.0044
+CIFAR-10        9/0     0.0020 |                            0.0035  0.0035  0.0035 |     +6/    +6 | +4.40pp 0.0002 | +1.96pp 0.0004 | +1.04pp 0.0008 | +2.97pp [+1.88,+4.11] 0.0001
+Pooled         44/6     0.0000 |                            0.0000  0.0000  0.0000 |    +12/   +12 | +7.17pp 0.0000 | +5.18pp 0.0000 | +3.57pp 0.0000 | +5.82pp [+4.07,+7.67] 0.0000
+
+--- redqueen vs random
+              sign W/L  p_sign | Wilcoxon p at censor value     193     384     768 | median dM90 at 193/384 | dAgree@12 p | @48 p | @192 p | dAUC (95% CI) p
+EuroSAT         4/6     0.8281 |                            0.8394  0.8394  0.8394 |     +0/    +0 | -1.08pp 0.7193 | -0.81pp 0.7784 | -0.39pp 0.8053 | -0.75pp [-2.33,+0.70] 0.7784
+So2Sat          6/3     0.2539 |                            0.0609  0.0953  0.0953 |     +0/    +0 | +4.49pp 0.0991 | +4.46pp 0.0991 | +3.92pp 0.0547 | +4.03pp [-0.91,+9.37] 0.0991
+UC Merced       6/3     0.2539 |                            0.1060  0.0542  0.0542 |     +0/    +0 | +4.06pp 0.0365 | +2.17pp 0.1401 | +0.62pp 0.2388 | +2.72pp [+0.14,+5.40] 0.0938
+BreastMNIST     4/5     0.7461 |                            0.6830  0.6830  0.6830 |     +0/    +0 | -0.64pp 0.6469 | -2.78pp 0.8641 | -2.95pp 0.8641 | -1.93pp [-6.19,+2.30] 0.7648
+CIFAR-10        3/8     0.9673 |                            0.9238  0.9238  0.9238 |    -12/   -12 | -2.67pp 0.9062 | -2.33pp 0.9531 | -1.10pp 0.9323 | -2.14pp [-4.74,+0.11] 0.9243
+Pooled         23/25    0.6673 |                            0.5327  0.5041  0.5041 |     +0/    +0 | +0.83pp 0.3421 | +0.14pp 0.6447 | +0.02pp 0.6498 | +0.39pp [-1.21,+2.07] 0.4978
+
+==============================================================================
+C. Paired test-accuracy differences (pp), RED-QUEEN minus comparator
+   mean, 95% bootstrap CI (10000 resamples of paired runs), 90% CI (lower end > -1 pp would be evidence of non-inferiority at 1 pp, alpha 0.05), two-sided Wilcoxon p
+
+--- redqueen vs ga
+EuroSAT      n=15 mean  -0.33  95% [ -0.96, +0.33]  90% [ -0.85, +0.22]  non-inferior@1pp: yes  Wilcoxon p=0.3003
+So2Sat       n=15 mean  -4.00  95% [ -5.75, -2.26]  90% [ -5.46, -2.53]  non-inferior@1pp: no   Wilcoxon p=0.0030
+UC Merced    n=15 mean  -1.00  95% [ -2.13, -0.02]  90% [ -1.92, -0.17]  non-inferior@1pp: no   Wilcoxon p=0.0993
+BreastMNIST  n=15 mean  -2.01  95% [ -4.57, +0.21]  90% [ -4.10, -0.13]  non-inferior@1pp: no   Wilcoxon p=0.1420
+CIFAR-10     n=15 mean  -0.75  95% [ -1.72, -0.03]  90% [ -1.55, -0.11]  non-inferior@1pp: no   Wilcoxon p=0.1397
+Pooled       n=75 mean  -1.62  95% [ -2.36, -0.92]  90% [ -2.24, -1.03]  non-inferior@1pp: no   Wilcoxon p=0.0001
+
+--- redqueen vs random
+EuroSAT      n=15 mean  +0.36  95% [ -0.24, +1.07]  90% [ -0.15, +0.94]  non-inferior@1pp: yes  Wilcoxon p=0.6701
+So2Sat       n=15 mean  -1.66  95% [ -3.96, +0.55]  90% [ -3.59, +0.22]  non-inferior@1pp: no   Wilcoxon p=0.1771
+UC Merced    n=15 mean  +0.13  95% [ -1.11, +1.27]  90% [ -0.90, +1.10]  non-inferior@1pp: yes  Wilcoxon p=0.6291
+BreastMNIST  n=15 mean  +1.11  95% [ -0.43, +2.82]  90% [ -0.21, +2.52]  non-inferior@1pp: yes  Wilcoxon p=0.2843
+CIFAR-10     n=15 mean  +1.14  95% [ +0.31, +2.21]  90% [ +0.41, +2.00]  non-inferior@1pp: yes  Wilcoxon p=0.0125
+Pooled       n=75 mean  +0.22  95% [ -0.48, +0.88]  90% [ -0.37, +0.79]  non-inferior@1pp: yes  Wilcoxon p=0.3197
+
+==============================================================================
+D. Trade-off evidence by source
+D1 search-time gap vs test accuracy inside each run's final population is in
+   the paper (scripts/analyze_pooled.py); not recomputed here.
+D2 held-out MLP auditor: Spearman rho between test accuracy and inimitability
+   across the 75 selected heads per dataset, with and without HEA L=2;
+   inimitability = M90 (censored at 384) and, uncensored, 1 - AUC.
+EuroSAT      all: n=75 rho(M90)=-0.59 p=0.000 rho(1-AUC)=-0.63 p=0.000
+             w/o HEA L=2: n=60 rho(M90)=-0.16 p=0.214 rho(1-AUC)=-0.28 p=0.030
+So2Sat       all: n=75 rho(M90)=-0.47 p=0.000 rho(1-AUC)=-0.57 p=0.000
+             w/o HEA L=2: n=60 rho(M90)=-0.20 p=0.118 rho(1-AUC)=-0.28 p=0.029
+UC Merced    all: n=75 rho(M90)=-0.50 p=0.000 rho(1-AUC)=-0.55 p=0.000
+             w/o HEA L=2: n=60 rho(M90)=-0.08 p=0.561 rho(1-AUC)=-0.15 p=0.245
+BreastMNIST  all: n=75 rho(M90)=-0.59 p=0.000 rho(1-AUC)=-0.75 p=0.000
+             w/o HEA L=2: n=60 rho(M90)=-0.64 p=0.000 rho(1-AUC)=-0.76 p=0.000
+CIFAR-10     all: n=75 rho(M90)=-0.61 p=0.000 rho(1-AUC)=-0.68 p=0.000
+             w/o HEA L=2: n=60 rho(M90)=-0.21 p=0.108 rho(1-AUC)=-0.39 p=0.002
+
+==============================================================================
+E. Two-qubit gates of the selected heads: as built L*|E| vs effective (L-1)*|E|
+redqueen  n= 75 mean built  18.1 effective  10.7 | L=1 (product circuit)  14 | mean L 2.41 | CZ 46
+ga        n= 75 mean built  11.8 effective   5.6 | L=1 (product circuit)  31 | mean L 1.92 | CZ 46
+random    n= 75 mean built  22.1 effective  12.8 | L=1 (product circuit)  15 | mean L 2.35 | CZ 45
+hea_L1    n= 75 mean built   8.0 effective   0.0 | L=1 (product circuit)  75 | mean L 1.00 | CZ 75
+hea_L2    n= 75 mean built  16.0 effective   8.0 | L=1 (product circuit)   0 | mean L 2.00 | CZ 75
+Figure 3 ga: L=2 |E|=7 gate=CZ built=14 effective=7
+Figure 3 redqueen: L=3 |E|=4 gate=CZ built=12 effective=8
+
+==============================================================================
+F1. Spectrum sizes: order <= 3, one representative per +/- pair, cap 2000
+L=1: order<=3 non-zero frequencies (up to sign) 288, used 288; full spectrum has (3^8 - 1)/2 = 3280 up to sign
+L=2: order<=3 non-zero frequencies (up to sign) 2032, used 2000; full spectrum has (5^8 - 1)/2 = 195312 up to sign
+L=3: order<=3 non-zero frequencies (up to sign) 6576, used 2000; full spectrum has (7^8 - 1)/2 = 2882400 up to sign
+F2. Label subsets across budgets (same seed): see scripts/revision/check_nesting.py
+
+(root: repository root)
+
+==============================================================================
+G. LaTeX rows for the robustness table (tab:h2robust)
+% redqueen vs ga
+EuroSAT & 0/15 & 5/3 & 0.363 & $+0.50$ $[-0.73,+1.68]$ & 0.211 & $-0.33$ $[-0.96,+0.33]$ & $-0.85$ \\
+So2Sat & 8/15 & 11/1 & 0.003 & $+12.47$ $[+6.90,+18.00]$ & 0.001 & $-4.00$ $[-5.75,-2.26]$ & $-5.46$ \\
+UC Merced & 2/15 & 11/2 & 0.011 & $+7.24$ $[+3.59,+10.71]$ & 0.001 & $-1.00$ $[-2.13,-0.02]$ & $-1.92$ \\
+BreastMNIST & 8/15 & 8/0 & 0.004 & $+5.93$ $[+2.44,+9.56]$ & 0.004 & $-2.01$ $[-4.57,+0.21]$ & $-4.10$ \\
+CIFAR-10 & 0/15 & 9/0 & 0.002 & $+2.97$ $[+1.88,+4.11]$ & $<10^{-4}$ & $-0.75$ $[-1.72,-0.03]$ & $-1.55$ \\
+Pooled & 18/75 & 44/6 & $<10^{-4}$ & $+5.82$ $[+4.07,+7.67]$ & $<10^{-4}$ & $-1.62$ $[-2.36,-0.92]$ & $-2.24$ \\
+% redqueen vs random
+EuroSAT & 0/15 & 4/6 & 0.828 & $-0.75$ $[-2.33,+0.70]$ & 0.778 & $+0.36$ $[-0.24,+1.07]$ & $-0.15$ \\
+So2Sat & 9/15 & 6/3 & 0.254 & $+4.03$ $[-0.91,+9.37]$ & 0.099 & $-1.66$ $[-3.96,+0.55]$ & $-3.59$ \\
+UC Merced & 2/15 & 6/3 & 0.254 & $+2.72$ $[+0.14,+5.40]$ & 0.094 & $+0.13$ $[-1.11,+1.27]$ & $-0.90$ \\
+BreastMNIST & 13/15 & 4/5 & 0.746 & $-1.93$ $[-6.19,+2.30]$ & 0.765 & $+1.11$ $[-0.43,+2.82]$ & $-0.21$ \\
+CIFAR-10 & 0/15 & 3/8 & 0.967 & $-2.14$ $[-4.74,+0.11]$ & 0.924 & $+1.14$ $[+0.31,+2.21]$ & $+0.41$ \\
+Pooled & 24/75 & 23/25 & 0.667 & $+0.39$ $[-1.21,+2.07]$ & 0.498 & $+0.22$ $[-0.48,+0.88]$ & $-0.37$ \\

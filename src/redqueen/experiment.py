@@ -19,7 +19,9 @@ def _host_summary(model, g, rec: dict, d: dict, do_audit: bool) -> dict:
     logits = predict_logits(model, d["X_test"])
     pred = logits.argmax(1).cpu().numpy()
     out = {"genome": g.to_dict(), "key": g.key(), "n_params": g.n_params(d["n_classes"]),
-           "two_qubit_gates": g.two_qubit_gates, "acc_train": rec["acc_train"],
+           "two_qubit_gates": g.two_qubit_gates,
+           "two_qubit_gates_effective": g.two_qubit_gates_effective,
+           "acc_train": rec["acc_train"],
            "acc_val": rec["acc_val"],
            **classical.scores(pred, d["y_test"].cpu().numpy())}
     out["gen_gap"] = out["acc_train"] - out["acc"]
@@ -39,6 +41,8 @@ def run(cfg: dict, method: str, budget: float, seed: int, out_dir: str | Path) -
 
     if method in SEARCH_METHODS:
         lam, mode = search_setup(method, cfg["lam"])
+        if method == "redqueen_fixedpar":
+            cfg = {**cfg, "parasite_evolve": False}
         res = Search(d, cfg, lam, seed).run(mode)
         b = res["best"]
         record["best"] = _host_summary(b["model"], b["genome"], b, d, cfg.get("audit", True))

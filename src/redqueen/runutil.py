@@ -7,14 +7,17 @@ from pathlib import Path
 
 import numpy as np
 
-SEARCH_METHODS = ("random", "ga", "redqueen")
+SEARCH_METHODS = ("random", "ga", "redqueen", "redqueen_fixedpar")
 
 
 def search_setup(method: str, lam: float) -> tuple[float, str]:
     """(lambda, mode) for a search method. ``ga`` drops the surrogate term;
     ``random`` keeps RED-QUEEN's fitness and changes only the variation
     operator, so redqueen-vs-ga isolates the surrogate term and
-    redqueen-vs-random isolates the search operator."""
+    redqueen-vs-random isolates the search operator. ``redqueen_fixedpar``
+    (revision) keeps RED-QUEEN's fitness and operators but freezes the initial
+    parasite population (no parasite evolution, no hall of fame), so
+    redqueen-vs-redqueen_fixedpar isolates parasite co-evolution."""
     if method not in SEARCH_METHODS:
         raise ValueError(f"unknown search method {method!r}; choose from {SEARCH_METHODS}")
     return (0.0 if method == "ga" else lam), ("random" if method == "random" else "evolve")

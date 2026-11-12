@@ -1,0 +1,50 @@
+# Revision R1 (CMC 96001), generated from configs/paper.yaml: imitation weight lambda = 0.1 (Reviewer 4, point 1)
+features: features/eurosat_ms_resnet50.npz
+out_dir: results/revision/lam0.1_eurosat
+view: resnet
+n_qubits: 8
+n_pool_fit: 3000
+n_pool_eval: 2000
+host_steps: 150
+host_lr: 0.05
+pop_size: 16
+generations: 10
+offspring: 14
+crossover_rate: 0.5
+use_archive: true
+gate_threshold: 0.0001
+gate_draws: 8
+parasite_pop: 8
+hof_size: 8
+parasite_m_panel:
+- 8
+- 16
+- 32
+- 64
+parasite_kinds:
+- fourier
+- rff
+lam: 0.1
+audit: true
+mlp_params:
+- 100
+- 150
+- 200
+- 300
+- 450
+- 600
+rff_m:
+- 8
+- 16
+- 32
+- 64
+methods:
+- redqueen
+budgets:
+- 0.05
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4

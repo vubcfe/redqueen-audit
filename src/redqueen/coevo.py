@@ -21,6 +21,8 @@ One generation:
 ``mode = "random"`` replaces tournament + crossover + mutation by fresh gated
 random genomes and keeps everything else (budget, co-evolving parasites,
 selection, fitness), which isolates the variation operator.
+``parasite_evolve: false`` (revision control) keeps the initial parasites
+fixed for the whole run, which isolates parasite co-evolution.
 """
 
 from __future__ import annotations
@@ -150,26 +152,31 @@ class Search:
             if gen == gens:
                 break
 
-            # parasites: best half (mean agreement over hosts and budgets) survives,
-            # mutants refill; the best joins the hall of fame (anti-cycling memory)
-            p_fit = A[:, :len(parasites)].mean((0, 2))
-            order = np.argsort(-p_fit)
-            survivors = [parasites[i] for i in order[: max(1, len(parasites) // 2)]]
-            if cfg["hof_size"]:
-                hof = [p for p in hof if p.key() != survivors[0].key()] + [survivors[0]]
-                hof = hof[-cfg["hof_size"]:]
-            # keys stay unique so that the first len(parasites) columns of the
-            # agreement array are exactly the current parasites
-            n_par, seen = len(parasites), {p.key() for p in survivors}
-            parasites, i = list(survivors), 0
-            while len(parasites) < n_par:
-                child = mutate_parasite(survivors[i % len(survivors)], self.rng, kinds,
-                                        mutate_m_frac=mutate_m_frac)
-                i += 1
-                if child.key() not in seen:
-                    seen.add(child.key())
-                    parasites.append(child)
-            panel = parasites + [p for p in hof if p.key() not in seen]
+            if cfg.get("parasite_evolve", True):
+                # parasites: best half (mean agreement over hosts and budgets) survives,
+                # mutants refill; the best joins the hall of fame (anti-cycling memory)
+                p_fit = A[:, :len(parasites)].mean((0, 2))
+                order = np.argsort(-p_fit)
+                survivors = [parasites[i] for i in order[: max(1, len(parasites) // 2)]]
+                if cfg["hof_size"]:
+                    hof = [p for p in hof if p.key() != survivors[0].key()] + [survivors[0]]
+                    hof = hof[-cfg["hof_size"]:]
+                # keys stay unique so that the first len(parasites) columns of the
+                # agreement array are exactly the current parasites
+                n_par, seen = len(parasites), {p.key() for p in survivors}
+                parasites, i = list(survivors), 0
+                while len(parasites) < n_par:
+                    child = mutate_parasite(survivors[i % len(survivors)], self.rng, kinds,
+                                            mutate_m_frac=mutate_m_frac)
+                    i += 1
+                    if child.key() not in seen:
+                        seen.add(child.key())
+                        parasites.append(child)
+                panel = parasites + [p for p in hof if p.key() not in seen]
+            else:
+                # fixed-parasite control (revision): the initial parasites
+                # attack every generation unchanged, with no hall of fame
+                panel = list(parasites)
 
             # re-score the population and the archive elites against the new
             # panel (memoised), so tournaments and archive cells compare

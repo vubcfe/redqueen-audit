@@ -1,0 +1,113 @@
+re-audited runs: 375
+
+1. Reproduction
+max |acc stored - rebuilt| = 5.11e-08; max |MLP agreement@12 stored - rebuilt| = 0.00e+00
+
+2. Convergence of the original setting (lr 3e-3), mean over runs and seeds
+budget | fit R2 @2000 | fit R2 @10000 | MSE ratio 10000/2000 | test agree @2000 -> @10000 (mean change, 5th-95th pct of change)
+M=  3 | 0.710 | 0.728 | 0.93 | +1.64pp [-2.83,+8.01]
+M=  6 | 0.845 | 0.869 | 0.77 | +2.65pp [-1.92,+9.29]
+M= 12 | 0.917 | 0.942 | 0.53 | +3.66pp [-2.56,+10.95]
+M= 24 | 0.967 | 0.984 | 0.30 | +3.58pp [-3.85,+10.24]
+M= 48 | 0.989 | 0.996 | 0.11 | +2.79pp [-4.49,+8.32]
+M= 96 | 0.996 | 0.999 | 0.06 | +1.81pp [-3.21,+6.49]
+M=192 | 0.998 | 1.000 | 0.06 | +1.31pp [-1.28,+4.56]
+M90 (seed 0) unchanged from 2000 to 10000 steps in 181/375 heads, lower in 188
+  H2 vs GA at 10000 steps (seed 0) EuroSAT     :  4/3  p=0.2635 (n=15)
+  H2 vs GA at 10000 steps (seed 0) So2Sat      : 11/1  p=0.0016 (n=15)
+  H2 vs GA at 10000 steps (seed 0) UC Merced   : 10/1  p=0.0042 (n=15)
+  H2 vs GA at 10000 steps (seed 0) BreastMNIST :  8/0  p=0.0057 (n=15)
+  H2 vs GA at 10000 steps (seed 0) CIFAR-10    : 11/0  p=0.0009 (n=15)
+  H2 vs GA at 10000 steps (seed 0) Pooled      : 44/5  p=0.0000 (n=75)
+
+3. Initialisation (lr 3e-3, 2000 steps, seeds 0-4)
+mean sd of test agreement over seeds per budget (pp): M=3:1.62 M=6:1.41 M=12:1.23 M=24:1.10 M=48:0.92 M=96:0.75 M=192:0.64
+heads whose M90 is the same for all five seeds: 262/375
+  H2 vs ga     EuroSAT     : per-seed W/L 3/3, 5/3, 5/3, 7/3, 4/3 | p range [0.0896, 0.2734]
+  H2 vs ga     So2Sat      : per-seed W/L 11/2, 11/2, 11/2, 11/2, 11/3 | p range [0.0015, 0.0031]
+  H2 vs ga     UC Merced   : per-seed W/L 10/3, 12/2, 12/3, 11/1, 11/1 | p range [0.0047, 0.0231]
+  H2 vs ga     BreastMNIST : per-seed W/L 8/0, 8/0, 8/0, 9/0, 8/0 | p range [0.0037, 0.0057]
+  H2 vs ga     CIFAR-10    : per-seed W/L 7/0, 7/0, 8/0, 7/0, 7/0 | p range [0.0055, 0.0085]
+  H2 vs ga     Pooled      : per-seed W/L 39/8, 43/7, 44/8, 45/6, 41/7 | p range [0.0000, 0.0000]
+  H2 vs ga     EuroSAT      seed-mean curve:  4/3  p=0.3629 (n=15)
+  H2 vs ga     So2Sat       seed-mean curve: 11/2  p=0.0028 (n=15)
+  H2 vs ga     UC Merced    seed-mean curve: 12/3  p=0.0154 (n=15)
+  H2 vs ga     BreastMNIST  seed-mean curve:  8/0  p=0.0057 (n=15)
+  H2 vs ga     CIFAR-10     seed-mean curve:  7/0  p=0.0085 (n=15)
+  H2 vs ga     Pooled       seed-mean curve: 42/8  p=0.0000 (n=75)
+  H2 vs random EuroSAT     : per-seed W/L 3/5, 5/6, 4/6, 6/5, 3/5 | p range [0.4819, 0.8845]
+  H2 vs random So2Sat      : per-seed W/L 5/4, 7/3, 6/2, 6/3, 7/4 | p range [0.0532, 0.1412]
+  H2 vs random UC Merced   : per-seed W/L 7/6, 8/4, 7/3, 8/3, 6/3 | p range [0.0418, 0.1723]
+  H2 vs random BreastMNIST : per-seed W/L 4/4, 4/4, 4/4, 3/4, 4/4 | p range [0.3997, 0.5837]
+  H2 vs random CIFAR-10    : per-seed W/L 3/8, 3/7, 3/7, 2/7, 3/7 | p range [0.8711, 0.9165]
+  H2 vs random Pooled      : per-seed W/L 22/27, 27/24, 24/22, 25/22, 23/23 | p range [0.1978, 0.5672]
+  H2 vs random EuroSAT      seed-mean curve:  4/6  p=0.8722 (n=15)
+  H2 vs random So2Sat       seed-mean curve:  6/4  p=0.1195 (n=15)
+  H2 vs random UC Merced    seed-mean curve:  7/4  p=0.1634 (n=15)
+  H2 vs random BreastMNIST  seed-mean curve:  4/4  p=0.5560 (n=15)
+  H2 vs random CIFAR-10     seed-mean curve:  3/7  p=0.9083 (n=15)
+  H2 vs random Pooled       seed-mean curve: 24/25 p=0.4682 (n=75)
+
+4. Tuned auditor (lr x seed x steps selected on the selection split)
+M90 tuned vs original-setting seed 0: lower 198, same 172, higher 5 of 375
+mean test-agreement gain of tuning per budget (pp): M=3:+2.36 M=6:+2.96 M=12:+4.35 M=24:+4.34 M=48:+3.65 M=96:+2.13 M=192:+1.29
+censored: original setting 84, tuned 62, oracle 55 (of 375)
+  H2 vs ga     EuroSAT      tuned:  4/2  p=0.1587 (n=15) | oracle:  4/2  p=0.1587 (n=15)
+  H2 vs ga     So2Sat       tuned: 11/2  p=0.0026 (n=15) | oracle: 11/2  p=0.0035 (n=15)
+  H2 vs ga     UC Merced    tuned: 10/1  p=0.0055 (n=15) | oracle:  8/1  p=0.0120 (n=15)
+  H2 vs ga     BreastMNIST  tuned:  7/0  p=0.0086 (n=15) | oracle:  8/0  p=0.0058 (n=15)
+  H2 vs ga     CIFAR-10     tuned: 12/0  p=0.0005 (n=15) | oracle: 11/0  p=0.0009 (n=15)
+  H2 vs ga     Pooled       tuned: 44/5  p=0.0000 (n=75) | oracle: 42/5  p=0.0000 (n=75)
+  H2 vs random EuroSAT      tuned:  3/4  p=0.7544 (n=15) | oracle:  3/5  p=0.8055 (n=15)
+  H2 vs random So2Sat       tuned:  6/5  p=0.2112 (n=15) | oracle:  7/4  p=0.1426 (n=15)
+  H2 vs random UC Merced    tuned:  6/3  p=0.1419 (n=15) | oracle:  7/4  p=0.0630 (n=15)
+  H2 vs random BreastMNIST  tuned:  4/5  p=0.5945 (n=15) | oracle:  3/5  p=0.8008 (n=15)
+  H2 vs random CIFAR-10     tuned:  4/7  p=0.8961 (n=15) | oracle:  4/6  p=0.8590 (n=15)
+  H2 vs random Pooled       tuned: 23/24 p=0.5673 (n=75) | oracle: 24/24 p=0.4590 (n=75)
+median M90 per method (original seed 0 / tuned)
+  EuroSAT      redqueen:12/12  ga:12/12  random:12/12  hea_L1:12/12  hea_L2:96/48
+  So2Sat       redqueen:384/96  ga:48/24  random:192/48  hea_L1:24/12  hea_L2:384/96
+  UC Merced    redqueen:48/24  ga:12/6  random:48/12  hea_L1:24/12  hea_L2:384/384
+  BreastMNIST  redqueen:384/384  ga:3/3  random:384/384  hea_L1:6/3  hea_L2:384/384
+  CIFAR-10     redqueen:12/12  ga:12/6  random:24/12  hea_L1:12/12  hea_L2:192/96
+
+5. Fit-set size (lr 3e-3, 2000 steps; three draws per size, mean agreement)
+n=124: censored EuroSAT 21, So2Sat 71, CIFAR-10 33 | median M90 RQ/GA/random: EuroSAT 12/12/24; So2Sat 384/384/384; CIFAR-10 24/12/384
+   H2 vs ga     EuroSAT     :  6/4  p=0.1308 (n=15)
+   H2 vs ga     So2Sat      :  4/0  p=0.0328 (n=15)
+   H2 vs ga     CIFAR-10    :  8/0  p=0.0058 (n=15)
+   H2 vs ga     3 datasets  : 18/4  p=0.0010 (n=45)
+   H2 vs random EuroSAT     :  7/6  p=0.4032 (n=15)
+   H2 vs random So2Sat      :  0/0  p=1.0000 (n=15)
+   H2 vs random CIFAR-10    :  2/8  p=0.9892 (n=15)
+   H2 vs random 3 datasets  :  9/14 p=0.9559 (n=45)
+n=336: censored EuroSAT 18, So2Sat 44, CIFAR-10 18 | median M90 RQ/GA/random: EuroSAT 12/12/12; So2Sat 384/96/384; CIFAR-10 24/12/48
+   H2 vs ga     EuroSAT     :  7/3  p=0.0896 (n=15)
+   H2 vs ga     So2Sat      :  9/1  p=0.0068 (n=15)
+   H2 vs ga     CIFAR-10    :  9/0  p=0.0037 (n=15)
+   H2 vs ga     3 datasets  : 25/4  p=0.0001 (n=45)
+   H2 vs random EuroSAT     :  6/5  p=0.5359 (n=15)
+   H2 vs random So2Sat      :  5/2  p=0.1463 (n=15)
+   H2 vs random CIFAR-10    :  3/8  p=0.9095 (n=15)
+   H2 vs random 3 datasets  : 14/15 p=0.6479 (n=45)
+n=1000: censored EuroSAT 6, So2Sat 34, CIFAR-10 16 | median M90 RQ/GA/random: EuroSAT 12/12/12; So2Sat 384/48/192; CIFAR-10 12/12/24
+   H2 vs ga     EuroSAT     :  6/3  p=0.1027 (n=15)
+   H2 vs ga     So2Sat      : 11/1  p=0.0013 (n=15)
+   H2 vs ga     CIFAR-10    :  8/0  p=0.0055 (n=15)
+   H2 vs ga     3 datasets  : 25/4  p=0.0001 (n=45)
+   H2 vs random EuroSAT     :  5/5  p=0.5819 (n=15)
+   H2 vs random So2Sat      :  7/2  p=0.0186 (n=15)
+   H2 vs random CIFAR-10    :  3/8  p=0.9238 (n=15)
+   H2 vs random 3 datasets  : 15/15 p=0.3175 (n=45)
+n=full: censored EuroSAT 0, So2Sat 29, CIFAR-10 0 | median M90 RQ/GA/random: EuroSAT 12/12/12; So2Sat 384/48/192; CIFAR-10 12/12/24
+   H2 vs ga     EuroSAT     :  5/3  p=0.3074 (n=15)
+   H2 vs ga     So2Sat      : 11/2  p=0.0028 (n=15)
+   H2 vs ga     CIFAR-10    :  7/0  p=0.0085 (n=15)
+   H2 vs ga     3 datasets  : 23/5  p=0.0005 (n=45)
+   H2 vs random EuroSAT     :  4/7  p=0.9128 (n=15)
+   H2 vs random So2Sat      :  6/3  p=0.0951 (n=15)
+   H2 vs random CIFAR-10    :  3/8  p=0.9165 (n=15)
+   H2 vs random 3 datasets  : 13/18 p=0.6420 (n=45)
+agreement change at n=124 vs full, per budget (pp): M=3:-2.5 M=6:-3.9 M=12:-6.7 M=24:-9.8 M=48:-12.7 M=96:-14.0 M=192:-14.4
+agreement change at n=336 vs full, per budget (pp): M=3:-0.8 M=6:-1.2 M=12:-2.3 M=24:-3.5 M=48:-5.5 M=96:-7.0 M=192:-7.6
+agreement change at n=1000 vs full, per budget (pp): M=3:-0.3 M=6:-0.3 M=12:-0.6 M=24:-0.8 M=48:-1.2 M=96:-1.6 M=192:-1.9

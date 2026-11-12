@@ -56,7 +56,19 @@ class HostGenome:
 
     @property
     def two_qubit_gates(self) -> int:
+        """Two-qubit gates as built (one entangling layer per block)."""
         return self.layers * len(self.edges)
+
+    @property
+    def two_qubit_gates_effective(self) -> int:
+        """Two-qubit gates the classifier actually needs. The entangling layer
+        of the last block acts directly before a measurement of Z-type
+        observables: CZ gates are diagonal and commute with them, so they can
+        be deleted; CNOT gates permute computational basis states, so they can
+        be replaced by classical parity post-processing of the measured bits.
+        Hence an ``L``-block host needs ``(L - 1) * |edges|`` two-qubit gates,
+        and an ``L = 1`` host is a product-state circuit."""
+        return (self.layers - 1) * len(self.edges)
 
     def descriptor(self) -> tuple[int, int]:
         """MAP-Elites cell: (re-upload depth, entangling-edge bin)."""

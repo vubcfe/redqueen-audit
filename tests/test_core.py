@@ -315,3 +315,95 @@ def test_check_labels_and_singleton_class_split(tmp_path):
              split=split, files=np.arange(300).astype(str))
     d = prepare(str(f), 0.05, 0, 4, device="cpu")
     assert d["sizes"]["labeled"] == 12
+
+
+# ---------------------------------------------------------------- revision (CMC 96001 R1)
+def test_final_cz_layer_does_not_change_outputs():
+    """Reviewer 3: the last CZ layer commutes with every measured Z_i and Z_aZ_b."""
+    rng = np.random.default_rng(0)
+    x = torch.tensor(rng.normal(size=(32, 5)), dtype=torch.float32)
+    checked = 0
+    for i in range(40):
+        g = random_genome(5, rng)
+        if g.ent_gate != "CZ" or not g.edges:
+            continue
+        h = QuantumHead(g, 3, seed=i)
+        with torch.no_grad():
+            full, cut = h.expectations(x), h.expectations(x, final_entangler=False)
+        assert torch.allclose(full, cut, atol=1e-5)
+        checked += 1
+    assert checked >= 5
+
+
+def test_final_cnot_layer_is_a_classical_relabelling():
+    """The last CNOT layer permutes computational basis states, so the outcome
+    distribution with it is a fixed permutation of the one without it."""
+    rng = np.random.default_rng(1)
+    n = 4
+    x = torch.tensor(rng.normal(size=(16, n)), dtype=torch.float32)
+    checked = 0
+    for i in range(40):
+        g = random_genome(n, rng)
+        if g.ent_gate != "CNOT" or not g.edges:
+            continue
+        # basis permutation of the final CNOT layer
+        idx = torch.arange(2 ** n).reshape((1,) + (2,) * n).to(torch.complex64)
+        for a, b in g.edges:
+            idx = sim.apply_cnot(idx, a, b)
+        perm = idx.real.reshape(-1).long()      # new position -> old basis index
+        h = QuantumHead(g, 2, seed=i)
+
+        def probs(final):
+            psi = sim.zero_state(len(x), n, x.device)
+            enc = sim.ROT[g.enc_gate]
+            for layer in range(g.layers):
+                for w in range(n):
+                    psi = sim.apply_1q(psi, enc(g.bandwidth * x[:, w]), w)
+                for w in range(n):
+                    for k, gate in enumerate(g.rot_gates):
+                        psi = sim.apply_1q(psi, sim.ROT[gate](h.theta[layer, w, k]), w)
+                if layer == g.layers - 1 and not final:
+                    break
+                for a, b in g.edges:
+                    psi = sim.apply_cnot(psi, a, b)
+            return sim.probabilities(psi)
+
+        with torch.no_grad():
+            assert torch.allclose(probs(True), probs(False)[:, perm], atol=1e-5)
+        checked += 1
+    assert checked >= 5
+
+
+def test_effective_two_qubit_gates():
+    g = HostGenome(n=4, layers=1, enc_gate="RY", bandwidth=1.0, rot="RY",
+                   edges=((0, 1), (1, 2)), ent_gate="CZ", readout="Z")
+    assert g.two_qubit_gates == 2 and g.two_qubit_gates_effective == 0
+    g3 = HostGenome(**{**g.to_dict(), "layers": 3, "edges": ((0, 1), (1, 2))})
+    assert g3.two_qubit_gates == 6 and g3.two_qubit_gates_effective == 4
+
+
+def test_fixed_parasites_never_change():
+    rng = np.random.default_rng(0)
+    n = 3
+
+    def t(a):
+        return torch.tensor(a, dtype=torch.float32)
+
+    X = rng.normal(size=(120, n))
+    y = (X[:, 0] > 0).astype(int)
+    data = {"X_tr": t(X[:60]), "y_tr": torch.tensor(y[:60]), "X_val": t(X[60:90]),
+            "y_val": torch.tensor(y[60:90]), "X_pool_fit": t(rng.normal(size=(80, n))),
+            "X_pool_eval": t(rng.normal(size=(40, n))), "n_classes": 2}
+    cfg = {"n_qubits": n, "host_steps": 3, "host_lr": 0.05, "pop_size": 3, "generations": 3,
+           "offspring": 2, "crossover_rate": 0.5, "parasite_pop": 4, "hof_size": 2,
+           "parasite_m_panel": [2, 4], "gate_threshold": 0.0, "parasite_evolve": False}
+    s = Search(data, cfg, 0.2, seed=0, log=lambda *_: None)
+    res = s.run("evolve")
+    assert len({k[1] for k in s._agree}) == 4          # only the 4 initial parasites
+    assert len(res["parasites"]) == 4
+    assert res["best"]["fitness_final"] == max(r["fitness_final"] for r in res["all"]
+                                               if r["in_final_pop"])
+    # the default still co-evolves
+    s2 = Search(data, {**cfg, "parasite_evolve": True}, 0.2, seed=0, log=lambda *_: None)
+    s2.run("evolve")
+    assert len({k[1] for k in s2._agree}) > 4

@@ -1,0 +1,2562 @@
+{
+ "method": "redqueen_fixedpar",
+ "budget": 0.01,
+ "seed": 2,
+ "sizes": {
+  "labeled": 193,
+  "search_train": 154,
+  "search_val": 39,
+  "pool_fit": 3000,
+  "pool_eval": 2000,
+  "pool_audit": 4000,
+  "test": 2759
+ },
+ "pca_explained": 0.5352691411972046,
+ "config": {
+  "features": "features/eurosat_ms_resnet50.npz",
+  "out_dir": "results/revision/fixedpar_eurosat",
+  "view": "resnet",
+  "n_qubits": 8,
+  "n_pool_fit": 3000,
+  "n_pool_eval": 2000,
+  "host_steps": 150,
+  "host_lr": 0.05,
+  "pop_size": 16,
+  "generations": 10,
+  "offspring": 14,
+  "crossover_rate": 0.5,
+  "use_archive": true,
+  "gate_threshold": 0.0001,
+  "gate_draws": 8,
+  "parasite_pop": 8,
+  "hof_size": 8,
+  "parasite_m_panel": [
+   8,
+   16,
+   32,
+   64
+  ],
+  "parasite_kinds": [
+   "fourier",
+   "rff"
+  ],
+  "lam": 0.2,
+  "audit": true,
+  "mlp_params": [
+   100,
+   150,
+   200,
+   300,
+   450,
+   600
+  ],
+  "rff_m": [
+   8,
+   16,
+   32,
+   64
+  ],
+  "methods": [
+   "redqueen_fixedpar"
+  ],
+  "budgets": [
+   0.01,
+   0.05,
+   0.1
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "best": {
+  "genome": {
+   "n": 8,
+   "enc_gate": "RY",
+   "bandwidth": 0.25,
+   "layers": 3,
+   "rot": "RY",
+   "edges": [
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "ent_gate": "CZ",
+   "readout": "ZZ"
+  },
+  "key": "RY|0.25|L3|RY|CZ[21-10]|ZZ",
+  "n_params": 134,
+  "two_qubit_gates": 6,
+  "two_qubit_gates_effective": 4,
+  "acc_train": 0.8571428656578064,
+  "acc_val": 0.8205128312110901,
+  "acc": 0.7673069952881478,
+  "f1_macro": 0.752647906549508,
+  "gen_gap": 0.08983587036965857,
+  "audit": {
+   "curves": {
+    "fourier": {
+     "3": 0.4820587169264226,
+     "6": 0.8006524102935846,
+     "12": 0.9318593693367162,
+     "24": 0.9416455237404857,
+     "48": 0.9746284885828198,
+     "96": 0.9960130482058717,
+     "192": 0.9992750996737948
+    },
+    "rff": {
+     "3": 0.4276911924610366,
+     "6": 0.7114896701703516,
+     "12": 0.9083001087350489,
+     "24": 0.933671620152229,
+     "48": 0.9550561797752809,
+     "96": 0.9764407393983328,
+     "192": 0.9876766944545124
+    },
+    "mlp": {
+     "3": 0.5839072127582458,
+     "6": 0.8579195360637912,
+     "12": 0.9420079739035883,
+     "24": 0.9670170351576658,
+     "48": 0.9797027908662559,
+     "96": 0.9822399420079739,
+     "192": 0.9884015947807177
+    }
+   },
+   "m90": {
+    "fourier": 12,
+    "rff": 12,
+    "mlp": 12
+   },
+   "m90_censored": {
+    "fourier": false,
+    "rff": false,
+    "mlp": false
+   },
+   "m90_censor_value": 384,
+   "fourier_spectrum_size": 2000,
+   "unbounded": {
+    "fourier_order3": 1.0,
+    "rff": 0.9971003986951794,
+    "mlp": 0.9913011960855382
+   }
+  },
+  "gap_search": 0.055499999999999966
+ },
+ "history": [
+  {
+   "gen": 0,
+   "evaluated": 16,
+   "best_fitness": 0.7454237347602845,
+   "best_acc_val": 0.7179487347602844,
+   "best_gap": 0.137375,
+   "mean_acc_val": 0.6057692468166351,
+   "mean_gap": 0.18784374999999998,
+   "parasite_mean_agree": 0.6119775390625,
+   "archive_cells": 7,
+   "seconds": 26.094518184661865,
+   "immigrants": 0
+  },
+  {
+   "gen": 1,
+   "evaluated": 30,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.7035256586968899,
+   "mean_gap": 0.10618749999999999,
+   "parasite_mean_agree": 0.6831025390625001,
+   "archive_cells": 7,
+   "seconds": 50.582807540893555,
+   "immigrants": 0
+  },
+  {
+   "gen": 2,
+   "evaluated": 44,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.7307692468166351,
+   "mean_gap": 0.08989062499999997,
+   "parasite_mean_agree": 0.6924345703125001,
+   "archive_cells": 7,
+   "seconds": 73.88743877410889,
+   "immigrants": 0
+  },
+  {
+   "gen": 3,
+   "evaluated": 58,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.7548077069222927,
+   "mean_gap": 0.05608593749999998,
+   "parasite_mean_agree": 0.7134873046875,
+   "archive_cells": 7,
+   "seconds": 95.84415030479431,
+   "immigrants": 0
+  },
+  {
+   "gen": 4,
+   "evaluated": 72,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.7644230909645557,
+   "mean_gap": 0.05714843749999998,
+   "parasite_mean_agree": 0.712453125,
+   "archive_cells": 7,
+   "seconds": 114.87975430488586,
+   "immigrants": 0
+  },
+  {
+   "gen": 5,
+   "evaluated": 86,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.7660256549715996,
+   "mean_gap": 0.05517968749999997,
+   "parasite_mean_agree": 0.7143046875000001,
+   "archive_cells": 7,
+   "seconds": 138.71698093414307,
+   "immigrants": 0
+  },
+  {
+   "gen": 6,
+   "evaluated": 100,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.7756410390138626,
+   "mean_gap": 0.04712499999999998,
+   "parasite_mean_agree": 0.7212841796875,
+   "archive_cells": 7,
+   "seconds": 164.65695023536682,
+   "immigrants": 0
+  },
+  {
+   "gen": 7,
+   "evaluated": 114,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.782051295042038,
+   "mean_gap": 0.04554687499999998,
+   "parasite_mean_agree": 0.7237148437500001,
+   "archive_cells": 7,
+   "seconds": 191.97490453720093,
+   "immigrants": 0
+  },
+  {
+   "gen": 8,
+   "evaluated": 128,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.782051295042038,
+   "mean_gap": 0.04667968749999998,
+   "parasite_mean_agree": 0.723115234375,
+   "archive_cells": 7,
+   "seconds": 216.76915335655212,
+   "immigrants": 0
+  },
+  {
+   "gen": 9,
+   "evaluated": 142,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.782051295042038,
+   "mean_gap": 0.04946874999999998,
+   "parasite_mean_agree": 0.722470703125,
+   "archive_cells": 7,
+   "seconds": 239.32830548286438,
+   "immigrants": 0
+  },
+  {
+   "gen": 10,
+   "evaluated": 156,
+   "best_fitness": 0.8316128312110901,
+   "best_acc_val": 0.8205128312110901,
+   "best_gap": 0.055499999999999966,
+   "mean_acc_val": 0.782051295042038,
+   "mean_gap": 0.04954687499999998,
+   "parasite_mean_agree": 0.722119140625,
+   "archive_cells": 7,
+   "seconds": 277.3373849391937
+  }
+ ],
+ "evaluated": [
+  {
+   "key": "RX|2.0|L1|RZRY|CNOT[67-43-65-16-35]|ZZ",
+   "acc_val": 0.43589743971824646,
+   "acc_train": 0.6883116960525513,
+   "gap": 0.3225,
+   "n_params": 156,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 0,
+   "in_final_pop": false,
+   "test_acc": 0.4095686972141266
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[54-70-27-31-37-36-42-60-43-40-45]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8116883039474487,
+   "gap": 0.06912499999999996,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 1,
+   "in_final_pop": false,
+   "test_acc": 0.7480971217155457
+  },
+  {
+   "key": "RY|0.5|L3|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.9675324559211731,
+   "gap": 0.137375,
+   "n_params": 272,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 2,
+   "in_final_pop": false,
+   "test_acc": 0.7393983602523804
+  },
+  {
+   "key": "RY|0.5|L3|RY|CZ[42-13-40-07-72-60-35-16-41]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8701298832893372,
+   "gap": 0.13724999999999998,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 3,
+   "in_final_pop": false,
+   "test_acc": 0.7107647657394409
+  },
+  {
+   "key": "RY|0.5|L2|RY|CZ[46-01-40-63-35]|Z",
+   "acc_val": 0.6410256624221802,
+   "acc_train": 0.8181818127632141,
+   "gap": 0.083375,
+   "n_params": 106,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 4,
+   "in_final_pop": false,
+   "test_acc": 0.7372236251831055
+  },
+  {
+   "key": "RY|0.5|L3|RZRY|CZ[]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8701298832893372,
+   "gap": 0.01799999999999996,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    0
+   ],
+   "order": 5,
+   "in_final_pop": false,
+   "test_acc": 0.7578833103179932
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[57-20-23-67-74-54-14-10-01-32]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.0685,
+   "n_params": 218,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 6,
+   "in_final_pop": false,
+   "test_acc": 0.7694817185401917
+  },
+  {
+   "key": "RX|0.5|L1|RZRY|CNOT[54-71-05-67-31-47-06-03-76-72-12]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.7662337422370911,
+   "gap": 0.14262499999999997,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 7,
+   "in_final_pop": false,
+   "test_acc": 0.6846683621406555
+  },
+  {
+   "key": "RX|2.0|L3|RY|CZ[30-56-41-46-61-57-42]|Z",
+   "acc_val": 0.3589743673801422,
+   "acc_train": 0.6038960814476013,
+   "gap": 0.39675000000000005,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 8,
+   "in_final_pop": false,
+   "test_acc": 0.37296122312545776
+  },
+  {
+   "key": "RX|0.5|L1|RZRY|CNOT[43-41-40-47-13-21-42-36-34-06]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.078125,
+   "n_params": 196,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 9,
+   "in_final_pop": false,
+   "test_acc": 0.7546212673187256
+  },
+  {
+   "key": "RY|1.0|L2|RZRY|CNOT[67-50-17-06-10-72-32-70-46]|Z",
+   "acc_val": 0.5641025900840759,
+   "acc_train": 0.7142857313156128,
+   "gap": 0.39175000000000004,
+   "n_params": 122,
+   "descriptor": [
+    2,
+    2
+   ],
+   "order": 10,
+   "in_final_pop": false,
+   "test_acc": 0.5241029262542725
+  },
+  {
+   "key": "RX|2.0|L3|RZRYRZ|CNOT[64-17-67-52-12]|Z",
+   "acc_val": 0.4871794879436493,
+   "acc_train": 0.7467532753944397,
+   "gap": 0.399,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 11,
+   "in_final_pop": false,
+   "test_acc": 0.3635375201702118
+  },
+  {
+   "key": "RY|0.5|L1|RZRYRZ|CNOT[30-14-04-31-35-62-75-13-51-20-60-72-06-41]|Z",
+   "acc_val": 0.6153846383094788,
+   "acc_train": 0.7142857313156128,
+   "gap": 0.14549999999999996,
+   "n_params": 114,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 12,
+   "in_final_pop": false,
+   "test_acc": 0.6708952784538269
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[51-04-45-52-14-21-73-10-03]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.798701286315918,
+   "gap": 0.0014999999999999458,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 13,
+   "in_final_pop": false,
+   "test_acc": 0.7651323080062866
+  },
+  {
+   "key": "RY|2.0|L3|RZRYRZ|CZ[17-57-14-64-65-54-03-24-20-04-37-47]|ZZ",
+   "acc_val": 0.41025641560554504,
+   "acc_train": 0.9675324559211731,
+   "gap": 0.57625,
+   "n_params": 282,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 14,
+   "in_final_pop": false,
+   "test_acc": 0.3160565495491028
+  },
+  {
+   "key": "RX|0.25|L1|RZRY|CNOT[61-34-75-16-45]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.037874999999999964,
+   "n_params": 146,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 15,
+   "in_final_pop": false,
+   "test_acc": 0.740485668182373
+  },
+  {
+   "key": "RY|2.0|L3|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.43589743971824646,
+   "acc_train": 0.9870129823684692,
+   "gap": 0.4895,
+   "n_params": 272,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 16,
+   "in_final_pop": false,
+   "test_acc": 0.36462485790252686
+  },
+  {
+   "key": "RY|1.0|L3|RZRY|CZ[]|ZZ",
+   "acc_val": 0.6410256624221802,
+   "acc_train": 0.8636363744735718,
+   "gap": 0.04062499999999997,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    0
+   ],
+   "order": 17,
+   "in_final_pop": false,
+   "test_acc": 0.7419354915618896
+  },
+  {
+   "key": "RY|0.5|L1|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.9220778942108154,
+   "gap": 0.08437499999999998,
+   "n_params": 224,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 18,
+   "in_final_pop": false,
+   "test_acc": 0.7720188498497009
+  },
+  {
+   "key": "RX|0.5|L3|RY|CNOT[57-23-67-74-14-01-32-42-07-60-16-41]|ZZ",
+   "acc_val": 0.6410256624221802,
+   "acc_train": 0.7922077775001526,
+   "gap": 0.31325000000000003,
+   "n_params": 214,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 19,
+   "in_final_pop": false,
+   "test_acc": 0.5726712942123413
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[70-27-31-37-36-43-40-71-23-06]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8246753215789795,
+   "gap": 0.05424999999999999,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 20,
+   "in_final_pop": false,
+   "test_acc": 0.7611453533172607
+  },
+  {
+   "key": "RY|0.25|L3|RY|CZ[21-10]|ZZ",
+   "acc_val": 0.8205128312110901,
+   "acc_train": 0.8571428656578064,
+   "gap": 0.055499999999999966,
+   "n_params": 134,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 21,
+   "in_final_pop": true,
+   "test_acc": 0.7673069834709167
+  },
+  {
+   "key": "RY|0.5|L3|RY|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.948051929473877,
+   "gap": 0.19749999999999998,
+   "n_params": 224,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 22,
+   "in_final_pop": false,
+   "test_acc": 0.6940920948982239
+  },
+  {
+   "key": "RY|0.5|L3|RZRY|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.9545454382896423,
+   "gap": 0.15512499999999999,
+   "n_params": 248,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 23,
+   "in_final_pop": false,
+   "test_acc": 0.729974627494812
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[57-20-23-67-74-54-14-10-01-32-36]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.91558438539505,
+   "gap": 0.08349999999999999,
+   "n_params": 228,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 24,
+   "in_final_pop": false,
+   "test_acc": 0.7495469450950623
+  },
+  {
+   "key": "RX|0.5|L1|RZRY|CNOT[43-41-40-47-13-21-42-36-34-06]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8051947951316833,
+   "gap": 0.07237499999999997,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 25,
+   "in_final_pop": false,
+   "test_acc": 0.7306995391845703
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CNOT[51-04-45-52-14-21-73-10-03]|Z",
+   "acc_val": 0.6410256624221802,
+   "acc_train": 0.7077922224998474,
+   "gap": 0.06824999999999998,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 26,
+   "in_final_pop": false,
+   "test_acc": 0.652047872543335
+  },
+  {
+   "key": "RY|0.5|L3|RZRYRZ|CZ[56-25-23-74-51-04-14-21-03]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.9220778942108154,
+   "gap": 0.10499999999999995,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 27,
+   "in_final_pop": false,
+   "test_acc": 0.7412105798721313
+  },
+  {
+   "key": "RY|1.0|L3|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.5897436141967773,
+   "acc_train": 0.9870129823684692,
+   "gap": 0.27175,
+   "n_params": 272,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 28,
+   "in_final_pop": false,
+   "test_acc": 0.6194273233413696
+  },
+  {
+   "key": "RX|0.5|L1|RZRY|CZ[67-31-06-03-72-12]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8766233921051025,
+   "gap": 0.06324999999999997,
+   "n_params": 166,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 29,
+   "in_final_pop": false,
+   "test_acc": 0.7778180837631226
+  },
+  {
+   "key": "RX|0.5|L2|RZRY|CZ[72-43-40-21-42]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.08137499999999998,
+   "n_params": 172,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 30,
+   "in_final_pop": false,
+   "test_acc": 0.7607828974723816
+  },
+  {
+   "key": "RY|0.5|L2|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.948051929473877,
+   "gap": 0.15224999999999994,
+   "n_params": 248,
+   "descriptor": [
+    2,
+    2
+   ],
+   "order": 31,
+   "in_final_pop": false,
+   "test_acc": 0.7035157680511475
+  },
+  {
+   "key": "RY|0.5|L3|RZRY|CNOT[40-13-21-34-06-27-71-23]|ZZ",
+   "acc_val": 0.6410256624221802,
+   "acc_train": 0.9350649118423462,
+   "gap": 0.17887499999999995,
+   "n_params": 218,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 32,
+   "in_final_pop": false,
+   "test_acc": 0.6977165937423706
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8571428656578064,
+   "gap": 0.06687499999999996,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 33,
+   "in_final_pop": true,
+   "test_acc": 0.7654947638511658
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[56-71-34-07-06-13-70-37-36-40]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8181818127632141,
+   "gap": 0.04262499999999997,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 34,
+   "in_final_pop": false,
+   "test_acc": 0.7633200287818909
+  },
+  {
+   "key": "RX|1.0|L1|RZRY|CNOT[31-03-72-05]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.18212499999999998,
+   "n_params": 146,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 35,
+   "in_final_pop": false,
+   "test_acc": 0.6737948656082153
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[37-36-23-45-14]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8571428656578064,
+   "gap": 0.04462499999999994,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 36,
+   "in_final_pop": false,
+   "test_acc": 0.7625951766967773
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CNOT[70-27-31-37-36-43-40-71-23-06]|Z",
+   "acc_val": 0.5897436141967773,
+   "acc_train": 0.7662337422370911,
+   "gap": 0.05262499999999998,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 37,
+   "in_final_pop": false,
+   "test_acc": 0.6868430972099304
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[70-27-31-37-40-06-56-25-34-45-74]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.9285714030265808,
+   "gap": 0.08124999999999996,
+   "n_params": 248,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 38,
+   "in_final_pop": false,
+   "test_acc": 0.7600579857826233
+  },
+  {
+   "key": "RX|0.5|L3|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.9610389471054077,
+   "gap": 0.14637499999999998,
+   "n_params": 272,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 39,
+   "in_final_pop": false,
+   "test_acc": 0.7390359044075012
+  },
+  {
+   "key": "RX|0.5|L3|RZRYRZ|CZ[56-25-07-23-06-13-45-74]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.9610389471054077,
+   "gap": 0.14587499999999998,
+   "n_params": 242,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 40,
+   "in_final_pop": false,
+   "test_acc": 0.7245379090309143
+  },
+  {
+   "key": "RY|0.25|L2|RZRY|CNOT[10-40-06]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8766233921051025,
+   "gap": 0.031374999999999986,
+   "n_params": 152,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 41,
+   "in_final_pop": false,
+   "test_acc": 0.7709314823150635
+  },
+  {
+   "key": "RY|0.5|L1|RZRY|CZ[04-52-14-21-10-71-34-06-13-74]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8246753215789795,
+   "gap": 0.0040000000000000036,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 42,
+   "in_final_pop": false,
+   "test_acc": 0.7774556279182434
+  },
+  {
+   "key": "RY|0.5|L1|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.9090909361839294,
+   "gap": 0.08737499999999998,
+   "n_params": 214,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 43,
+   "in_final_pop": false,
+   "test_acc": 0.7658572196960449
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[12-03-07-06-70-36-40]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8246753215789795,
+   "gap": 0.03787499999999999,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 44,
+   "in_final_pop": false,
+   "test_acc": 0.7480971217155457
+  },
+  {
+   "key": "RY|0.25|L3|RY|CNOT[21-03]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.036250000000000004,
+   "n_params": 134,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 45,
+   "in_final_pop": false,
+   "test_acc": 0.7785429358482361
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[56-12-25-23-04-03-07]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8571428656578064,
+   "gap": 0.05875,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 46,
+   "in_final_pop": false,
+   "test_acc": 0.7600579857826233
+  },
+  {
+   "key": "RY|0.25|L2|RZRY|CNOT[10-40-06]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8311688303947449,
+   "gap": 0.033249999999999974,
+   "n_params": 122,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 47,
+   "in_final_pop": false,
+   "test_acc": 0.7723813056945801
+  },
+  {
+   "key": "RX|0.25|L3|RY|CZ[21-10]|ZZ",
+   "acc_val": 0.4871794879436493,
+   "acc_train": 0.5974025726318359,
+   "gap": 0.18787500000000001,
+   "n_params": 134,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 48,
+   "in_final_pop": false,
+   "test_acc": 0.53388911485672
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[23-03]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8766233921051025,
+   "gap": 0.04974999999999996,
+   "n_params": 158,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 49,
+   "in_final_pop": false,
+   "test_acc": 0.7778180837631226
+  },
+  {
+   "key": "RX|0.5|L1|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.9415584206581116,
+   "gap": 0.08874999999999997,
+   "n_params": 214,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 50,
+   "in_final_pop": false,
+   "test_acc": 0.768031895160675
+  },
+  {
+   "key": "RY|0.25|L1|RZRYRZ|CZ[70-27-37-56-25-45-74]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.7857142686843872,
+   "gap": 0.031124999999999986,
+   "n_params": 184,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 51,
+   "in_final_pop": false,
+   "test_acc": 0.7633200287818909
+  },
+  {
+   "key": "RY|0.25|L1|RY|CZ[21-40-06-25-45-74]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8441558480262756,
+   "gap": 0.0295,
+   "n_params": 158,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 52,
+   "in_final_pop": false,
+   "test_acc": 0.7687568068504333
+  },
+  {
+   "key": "RY|0.25|L2|RZRY|CZ[70-27-31-37-40-06-56-25-34-45-74]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.051624999999999976,
+   "n_params": 232,
+   "descriptor": [
+    2,
+    2
+   ],
+   "order": 53,
+   "in_final_pop": false,
+   "test_acc": 0.7731062173843384
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[70-27-31-37-40-06-25-34-45-74]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.9545454382896423,
+   "gap": 0.07812499999999994,
+   "n_params": 238,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 54,
+   "in_final_pop": false,
+   "test_acc": 0.7644073963165283
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[70-27-31-37-36-43-40-71-23-06]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8051947951316833,
+   "gap": 0.06587499999999999,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 55,
+   "in_final_pop": true,
+   "test_acc": 0.7390359044075012
+  },
+  {
+   "key": "RY|0.5|L3|RZRY|CNOT[41-40-47-13-42-36-70-27-31-71]|Z",
+   "acc_val": 0.6153846383094788,
+   "acc_train": 0.8636363744735718,
+   "gap": 0.16137500000000002,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 56,
+   "in_final_pop": false,
+   "test_acc": 0.7042406797409058
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[70-27-31-37-40-06-56-25-34-45-74]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.9025974273681641,
+   "gap": 0.08087499999999997,
+   "n_params": 248,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 57,
+   "in_final_pop": false,
+   "test_acc": 0.7625951766967773
+  },
+  {
+   "key": "RY|0.25|L3|RY|CZ[21-10]|Z",
+   "acc_val": 0.7948718070983887,
+   "acc_train": 0.850649356842041,
+   "gap": 0.04362499999999997,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 58,
+   "in_final_pop": true,
+   "test_acc": 0.7723813056945801
+  },
+  {
+   "key": "RX|0.25|L1|RZRY|CNOT[70-27-31-37-36-43-40-71-23-06]|Z",
+   "acc_val": 0.6153846383094788,
+   "acc_train": 0.7922077775001526,
+   "gap": 0.050875000000000004,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 59,
+   "in_final_pop": false,
+   "test_acc": 0.7082276344299316
+  },
+  {
+   "key": "RX|0.5|L3|RZRY|CNOT[21-43-40-42-34-10]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8311688303947449,
+   "gap": 0.11499999999999999,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 60,
+   "in_final_pop": false,
+   "test_acc": 0.7372236251831055
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[70-31-37-43-71]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.02724999999999997,
+   "n_params": 156,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 61,
+   "in_final_pop": false,
+   "test_acc": 0.7629576325416565
+  },
+  {
+   "key": "RY|0.25|L1|RZRYRZ|CZ[21-06]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8246753215789795,
+   "gap": 0.013000000000000012,
+   "n_params": 134,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 62,
+   "in_final_pop": false,
+   "test_acc": 0.7633200287818909
+  },
+  {
+   "key": "RY|0.25|L2|RZRY|CZ[21-06-74-37-56]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8441558480262756,
+   "gap": 0.026250000000000023,
+   "n_params": 122,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 63,
+   "in_final_pop": false,
+   "test_acc": 0.7749184370040894
+  },
+  {
+   "key": "RY|0.25|L1|RZRYRZ|CZ[70-27-37-56-25-45-74]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8116883039474487,
+   "gap": 0.0030000000000000027,
+   "n_params": 114,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 64,
+   "in_final_pop": false,
+   "test_acc": 0.7596955299377441
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.7948718070983887,
+   "acc_train": 0.850649356842041,
+   "gap": 0.057874999999999954,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 65,
+   "in_final_pop": true,
+   "test_acc": 0.7553461790084839
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[70-27-36-23-25-45]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8311688303947449,
+   "gap": 0.09024999999999994,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 66,
+   "in_final_pop": false,
+   "test_acc": 0.7386734485626221
+  },
+  {
+   "key": "RY|1.0|L1|RZRYRZ|CNOT[70-37-40-23-25]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.16387499999999997,
+   "n_params": 164,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 67,
+   "in_final_pop": false,
+   "test_acc": 0.6741573214530945
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CZ[70-27-31-37-40-06-56-25-34-45-74]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.9090909361839294,
+   "gap": 0.07474999999999996,
+   "n_params": 248,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 68,
+   "in_final_pop": false,
+   "test_acc": 0.7502718567848206
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CZ[25-04-31-37-36-71]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.025749999999999995,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 69,
+   "in_final_pop": false,
+   "test_acc": 0.7538963556289673
+  },
+  {
+   "key": "RY|0.25|L3|RY|CZ[10]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.028624999999999984,
+   "n_params": 124,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 70,
+   "in_final_pop": false,
+   "test_acc": 0.7828923463821411
+  },
+  {
+   "key": "RY|0.25|L1|RZRYRZ|CZ[70-27-37-56-25-45-74-10]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.798701286315918,
+   "gap": 0.028374999999999984,
+   "n_params": 194,
+   "descriptor": [
+    1,
+    2
+   ],
+   "order": 71,
+   "in_final_pop": false,
+   "test_acc": 0.7651323080062866
+  },
+  {
+   "key": "RX|2.0|L1|RZRY|CNOT[56-12-23-40-06-74]|Z",
+   "acc_val": 0.38461539149284363,
+   "acc_train": 0.5649350881576538,
+   "gap": 0.429,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 72,
+   "in_final_pop": false,
+   "test_acc": 0.3341790437698364
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[56-23-04]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.043625,
+   "n_params": 168,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 73,
+   "in_final_pop": false,
+   "test_acc": 0.7654947638511658
+  },
+  {
+   "key": "RY|0.5|L3|RZRY|CZ[25-04-34-07]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8571428656578064,
+   "gap": 0.08274999999999996,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 74,
+   "in_final_pop": false,
+   "test_acc": 0.7393983602523804
+  },
+  {
+   "key": "RY|0.25|L1|RY|CNOT[35-56]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8181818127632141,
+   "gap": 0.015499999999999958,
+   "n_params": 118,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 75,
+   "in_final_pop": false,
+   "test_acc": 0.7687568068504333
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[70-27-40-06-56-45]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.030874999999999986,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 76,
+   "in_final_pop": false,
+   "test_acc": 0.7778180837631226
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CZ[21-27-37-40-06-56-25-34-45]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.9090909361839294,
+   "gap": 0.06862499999999999,
+   "n_params": 252,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 77,
+   "in_final_pop": false,
+   "test_acc": 0.7644073963165283
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CNOT[31-37-40-06-12-13]|Z",
+   "acc_val": 0.6410256624221802,
+   "acc_train": 0.7337662577629089,
+   "gap": 0.048124999999999946,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 78,
+   "in_final_pop": false,
+   "test_acc": 0.6904675960540771
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[56-12-25-23-04-03-07-53]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.850649356842041,
+   "gap": 0.070625,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 79,
+   "in_final_pop": false,
+   "test_acc": 0.7473722696304321
+  },
+  {
+   "key": "RY|0.25|L3|RY|CNOT[21-10]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8441558480262756,
+   "gap": 0.049874999999999975,
+   "n_params": 134,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 80,
+   "in_final_pop": false,
+   "test_acc": 0.76368248462677
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CNOT[37-40-56-25-34-74]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.7857142686843872,
+   "gap": 0.027624999999999983,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 81,
+   "in_final_pop": false,
+   "test_acc": 0.7096774578094482
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CZ[]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.850649356842041,
+   "gap": 0.022499999999999964,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    0
+   ],
+   "order": 82,
+   "in_final_pop": false,
+   "test_acc": 0.7691192626953125
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[21-10]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.022749999999999992,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 83,
+   "in_final_pop": false,
+   "test_acc": 0.7774556279182434
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CNOT[36-40-71-23]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8961039185523987,
+   "gap": 0.05537499999999995,
+   "n_params": 202,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 84,
+   "in_final_pop": false,
+   "test_acc": 0.7705690860748291
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[56-12-25-23-04-03]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8636363744735718,
+   "gap": 0.05437499999999995,
+   "n_params": 198,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 85,
+   "in_final_pop": false,
+   "test_acc": 0.7654947638511658
+  },
+  {
+   "key": "RX|0.25|L3|RY|CZ[21-56]|ZZ",
+   "acc_val": 0.5384615659713745,
+   "acc_train": 0.6688311696052551,
+   "gap": 0.12512499999999996,
+   "n_params": 134,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 86,
+   "in_final_pop": false,
+   "test_acc": 0.5251902937889099
+  },
+  {
+   "key": "RY|0.25|L3|RY|CNOT[12-25-04-03-27-31-37-40-71-06]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.798701286315918,
+   "gap": 0.07100000000000001,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 87,
+   "in_final_pop": false,
+   "test_acc": 0.7267125844955444
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CZ[21-10]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8701298832893372,
+   "gap": 0.025749999999999995,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 88,
+   "in_final_pop": false,
+   "test_acc": 0.7712939381599426
+  },
+  {
+   "key": "RX|0.25|L2|RZRY|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8311688303947449,
+   "gap": 0.057999999999999996,
+   "n_params": 122,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 89,
+   "in_final_pop": false,
+   "test_acc": 0.7372236251831055
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[56-23]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.034249999999999975,
+   "n_params": 158,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 90,
+   "in_final_pop": false,
+   "test_acc": 0.7749184370040894
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[12-25-04]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.03387499999999999,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 91,
+   "in_final_pop": false,
+   "test_acc": 0.7600579857826233
+  },
+  {
+   "key": "RY|0.25|L1|RY|CZ[]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.798701286315918,
+   "gap": 0.0040000000000000036,
+   "n_params": 98,
+   "descriptor": [
+    1,
+    0
+   ],
+   "order": 92,
+   "in_final_pop": false,
+   "test_acc": 0.7625951766967773
+  },
+  {
+   "key": "RY|0.25|L3|RY|CNOT[21-56-12-25]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.850649356842041,
+   "gap": 0.03562500000000002,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 93,
+   "in_final_pop": false,
+   "test_acc": 0.76368248462677
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.7272727489471436,
+   "gap": 0.04949999999999999,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 94,
+   "in_final_pop": false,
+   "test_acc": 0.6882928609848022
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[56-12-25-23-04]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8311688303947449,
+   "gap": 0.04849999999999996,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 95,
+   "in_final_pop": false,
+   "test_acc": 0.7368611693382263
+  },
+  {
+   "key": "RX|0.25|L1|RZRY|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.7857142686843872,
+   "gap": 0.05149999999999996,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 96,
+   "in_final_pop": false,
+   "test_acc": 0.7056905031204224
+  },
+  {
+   "key": "RY|0.5|L1|RY|CZ[21-40-06-25-45-07-23]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8961039185523987,
+   "gap": 0.09274999999999994,
+   "n_params": 168,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 97,
+   "in_final_pop": false,
+   "test_acc": 0.7506343126296997
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CZ[37-56-25-04-03]|ZZ",
+   "acc_val": 0.7948718070983887,
+   "acc_train": 0.8766233921051025,
+   "gap": 0.05537500000000001,
+   "n_params": 188,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 98,
+   "in_final_pop": true,
+   "test_acc": 0.7615078091621399
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[70-27-31-37-40-06-56-25-34-45-74]|Z",
+   "acc_val": 0.7948718070983887,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.04287499999999997,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 99,
+   "in_final_pop": true,
+   "test_acc": 0.7647698521614075
+  },
+  {
+   "key": "RY|2.0|L3|RY|CZ[21-03]|Z",
+   "acc_val": 0.3589743673801422,
+   "acc_train": 0.5649350881576538,
+   "gap": 0.37024999999999997,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 100,
+   "in_final_pop": false,
+   "test_acc": 0.34686481952667236
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CZ[17]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8441558480262756,
+   "gap": 0.02612499999999998,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 101,
+   "in_final_pop": false,
+   "test_acc": 0.768031895160675
+  },
+  {
+   "key": "RY|0.25|L3|RY|CNOT[56-04-10]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8701298832893372,
+   "gap": 0.056249999999999994,
+   "n_params": 144,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 102,
+   "in_final_pop": false,
+   "test_acc": 0.7709314823150635
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[70-31-36-40-25-04]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.91558438539505,
+   "gap": 0.05587499999999998,
+   "n_params": 188,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 103,
+   "in_final_pop": false,
+   "test_acc": 0.7709314823150635
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CZ[37-56-25-04-03]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.850649356842041,
+   "gap": 0.036500000000000005,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 104,
+   "in_final_pop": true,
+   "test_acc": 0.7644073963165283
+  },
+  {
+   "key": "RY|1.0|L3|RZRY|CZ[40-06-25-34-74-36-71]|Z",
+   "acc_val": 0.5384615659713745,
+   "acc_train": 0.8571428656578064,
+   "gap": 0.20724999999999996,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 105,
+   "in_final_pop": false,
+   "test_acc": 0.6310257315635681
+  },
+  {
+   "key": "RY|0.5|L3|RZRY|CZ[10-56-12-23-03]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.91558438539505,
+   "gap": 0.05162499999999995,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 106,
+   "in_final_pop": false,
+   "test_acc": 0.7528089880943298
+  },
+  {
+   "key": "RX|0.25|L1|RZRY|CZ[37-04-12]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8246753215789795,
+   "gap": 0.02512499999999998,
+   "n_params": 136,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 107,
+   "in_final_pop": false,
+   "test_acc": 0.7694817185401917
+  },
+  {
+   "key": "RY|0.25|L3|RY|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.6153846383094788,
+   "acc_train": 0.8441558480262756,
+   "gap": 0.06775,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 108,
+   "in_final_pop": false,
+   "test_acc": 0.7357738614082336
+  },
+  {
+   "key": "RY|0.25|L3|RY|CZ[20-10]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8636363744735718,
+   "gap": 0.054499999999999965,
+   "n_params": 134,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 109,
+   "in_final_pop": false,
+   "test_acc": 0.7408481240272522
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[40-06-25-74]|ZZ",
+   "acc_val": 0.8205128312110901,
+   "acc_train": 0.8311688303947449,
+   "gap": 0.019499999999999962,
+   "n_params": 146,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 110,
+   "in_final_pop": true,
+   "test_acc": 0.7647698521614075
+  },
+  {
+   "key": "RX|0.25|L3|RY|CZ[56-25-03]|Z",
+   "acc_val": 0.41025641560554504,
+   "acc_train": 0.5584415793418884,
+   "gap": 0.1205,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 111,
+   "in_final_pop": false,
+   "test_acc": 0.48495832085609436
+  },
+  {
+   "key": "RY|0.5|L1|RZRYRZ|CZ[70-27-37-56-25-45-74]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8961039185523987,
+   "gap": 0.06799999999999998,
+   "n_params": 184,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 112,
+   "in_final_pop": true,
+   "test_acc": 0.7716563940048218
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[12-25-04]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.06787499999999999,
+   "n_params": 168,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 113,
+   "in_final_pop": true,
+   "test_acc": 0.7752808928489685
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[40-21]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.051374999999999976,
+   "n_params": 158,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 114,
+   "in_final_pop": false,
+   "test_acc": 0.7654947638511658
+  },
+  {
+   "key": "RX|0.5|L3|RZRYRZ|CZ[27-40-74]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8766233921051025,
+   "gap": 0.042874999999999996,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 115,
+   "in_final_pop": false,
+   "test_acc": 0.7477347254753113
+  },
+  {
+   "key": "RY|0.25|L2|RY|CZ[40-25-74]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8636363744735718,
+   "gap": 0.035999999999999976,
+   "n_params": 136,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 116,
+   "in_final_pop": false,
+   "test_acc": 0.7781805396080017
+  },
+  {
+   "key": "RX|0.5|L1|RZRY|CZ[12-04-37-45]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.0044999999999999485,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 117,
+   "in_final_pop": false,
+   "test_acc": 0.7731062173843384
+  },
+  {
+   "key": "RY|0.25|L3|RY|CNOT[10-40-06-74]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.048374999999999974,
+   "n_params": 154,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 118,
+   "in_final_pop": false,
+   "test_acc": 0.768031895160675
+  },
+  {
+   "key": "RX|0.25|L3|RZRYRZ|CNOT[12-25-37-03]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8701298832893372,
+   "gap": 0.04799999999999999,
+   "n_params": 202,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 119,
+   "in_final_pop": false,
+   "test_acc": 0.7731062173843384
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[56-25-23-04-21-10]|ZZ",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8961039185523987,
+   "gap": 0.0645,
+   "n_params": 198,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 120,
+   "in_final_pop": false,
+   "test_acc": 0.7640449404716492
+  },
+  {
+   "key": "RY|0.25|L3|RY|CZ[25-31-43-71-06]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.043875,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 121,
+   "in_final_pop": true,
+   "test_acc": 0.7698441743850708
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[21-10-70-31-71-06-75]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.9025974273681641,
+   "gap": 0.07899999999999999,
+   "n_params": 208,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 122,
+   "in_final_pop": false,
+   "test_acc": 0.7709314823150635
+  },
+  {
+   "key": "RX|0.25|L3|RZRYRZ|CZ[56-25-04-31-34-45]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.022124999999999978,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 123,
+   "in_final_pop": false,
+   "test_acc": 0.7734686732292175
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.798701286315918,
+   "gap": 0.0014999999999999458,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    0
+   ],
+   "order": 124,
+   "in_final_pop": false,
+   "test_acc": 0.7651323080062866
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[40-06-25-74]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.798701286315918,
+   "gap": 0.0014999999999999458,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 125,
+   "in_final_pop": false,
+   "test_acc": 0.7651323080062866
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[43-06-25-74]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.798701286315918,
+   "gap": 0.01849999999999996,
+   "n_params": 146,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 126,
+   "in_final_pop": false,
+   "test_acc": 0.7586082220077515
+  },
+  {
+   "key": "RY|2.0|L1|RY|CZ[40-21-10]|ZZ",
+   "acc_val": 0.3589743673801422,
+   "acc_train": 0.7077922224998474,
+   "gap": 0.210625,
+   "n_params": 128,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 127,
+   "in_final_pop": false,
+   "test_acc": 0.45668721199035645
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[56-25-04-03]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8766233921051025,
+   "gap": 0.05912499999999998,
+   "n_params": 178,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 128,
+   "in_final_pop": true,
+   "test_acc": 0.7542588114738464
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8311688303947449,
+   "gap": 0.05975,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 129,
+   "in_final_pop": false,
+   "test_acc": 0.7578833103179932
+  },
+  {
+   "key": "RY|0.25|L3|RY|CZ[74]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.850649356842041,
+   "gap": 0.02949999999999997,
+   "n_params": 124,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 130,
+   "in_final_pop": false,
+   "test_acc": 0.7738311290740967
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[70-31-40-06-25-34-75-74-21]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8441558480262756,
+   "gap": 0.04712499999999997,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 131,
+   "in_final_pop": false,
+   "test_acc": 0.7633200287818909
+  },
+  {
+   "key": "RX|0.25|L1|RZRY|CZ[40-06-25-74]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.017000000000000015,
+   "n_params": 146,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 132,
+   "in_final_pop": false,
+   "test_acc": 0.77020663022995
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[37-40-56-45-10]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8961039185523987,
+   "gap": 0.039874999999999994,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 133,
+   "in_final_pop": true,
+   "test_acc": 0.7738311290740967
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CZ[56-12-25-23-04-03]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8636363744735718,
+   "gap": 0.03462500000000002,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 134,
+   "in_final_pop": false,
+   "test_acc": 0.7578833103179932
+  },
+  {
+   "key": "RY|0.5|L1|RZRYRZ|CZ[70-27-37-56-25-45-74]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8181818127632141,
+   "gap": 0.0024999999999999467,
+   "n_params": 114,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 135,
+   "in_final_pop": false,
+   "test_acc": 0.7741935849189758
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[56-12-25-23-04-03]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.850649356842041,
+   "gap": 0.03487499999999999,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 136,
+   "in_final_pop": true,
+   "test_acc": 0.7665821313858032
+  },
+  {
+   "key": "RY|2.0|L1|RY|CZ[27-25-45-74-10]|ZZ",
+   "acc_val": 0.41025641560554504,
+   "acc_train": 0.7077922224998474,
+   "gap": 0.24999999999999997,
+   "n_params": 148,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 137,
+   "in_final_pop": false,
+   "test_acc": 0.4233418107032776
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[31-30-06-34-23-04-03]|Z",
+   "acc_val": 0.692307710647583,
+   "acc_train": 0.8376623392105103,
+   "gap": 0.05487499999999998,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 138,
+   "in_final_pop": false,
+   "test_acc": 0.747009813785553
+  },
+  {
+   "key": "RY|0.25|L3|RY|CZ[71-10]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8571428656578064,
+   "gap": 0.027874999999999983,
+   "n_params": 114,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 139,
+   "in_final_pop": false,
+   "test_acc": 0.7698441743850708
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[40-25-74]|ZZ",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.8246753215789795,
+   "gap": 0.01849999999999996,
+   "n_params": 136,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 140,
+   "in_final_pop": false,
+   "test_acc": 0.7644073963165283
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CZ[06-25-74-04]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8766233921051025,
+   "gap": 0.05537499999999995,
+   "n_params": 202,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 141,
+   "in_final_pop": false,
+   "test_acc": 0.7723813056945801
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[06-21-10]|ZZ",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.8896104097366333,
+   "gap": 0.05412499999999995,
+   "n_params": 168,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 142,
+   "in_final_pop": false,
+   "test_acc": 0.7712939381599426
+  },
+  {
+   "key": "RY|0.25|L3|RZRYRZ|CZ[]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.850649356842041,
+   "gap": 0.022499999999999964,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    0
+   ],
+   "order": 143,
+   "in_final_pop": false,
+   "test_acc": 0.7691192626953125
+  },
+  {
+   "key": "RY|0.5|L3|RZRY|CZ[06-70-27-45]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.9220778942108154,
+   "gap": 0.12287499999999998,
+   "n_params": 178,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 144,
+   "in_final_pop": false,
+   "test_acc": 0.7383109927177429
+  },
+  {
+   "key": "RX|0.25|L3|RZRYRZ|CNOT[56-12-25-23-04-03]|Z",
+   "acc_val": 0.6666666865348816,
+   "acc_train": 0.850649356842041,
+   "gap": 0.07112499999999997,
+   "n_params": 162,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 145,
+   "in_final_pop": false,
+   "test_acc": 0.7430228590965271
+  },
+  {
+   "key": "RX|0.25|L2|RZRY|CNOT[12-25-04]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8636363744735718,
+   "gap": 0.021125000000000005,
+   "n_params": 152,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 146,
+   "in_final_pop": false,
+   "test_acc": 0.776368260383606
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CZ[21-10]|ZZ",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8701298832893372,
+   "gap": 0.04099999999999998,
+   "n_params": 158,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 147,
+   "in_final_pop": false,
+   "test_acc": 0.7843421697616577
+  },
+  {
+   "key": "RX|0.25|L3|RY|CZ[21]|ZZ",
+   "acc_val": 0.5384615659713745,
+   "acc_train": 0.6428571343421936,
+   "gap": 0.13474999999999998,
+   "n_params": 124,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 148,
+   "in_final_pop": false,
+   "test_acc": 0.5270025730133057
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CZ[70-31-40-56-25-34-74]|Z",
+   "acc_val": 0.7692307829856873,
+   "acc_train": 0.850649356842041,
+   "gap": 0.03512499999999999,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 149,
+   "in_final_pop": true,
+   "test_acc": 0.7647698521614075
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CZ[40-06-27-23]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8701298832893372,
+   "gap": 0.0325,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 150,
+   "in_final_pop": false,
+   "test_acc": 0.7705690860748291
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[12-25-21]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.8116883039474487,
+   "gap": 0.030749999999999972,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 151,
+   "in_final_pop": false,
+   "test_acc": 0.7596955299377441
+  },
+  {
+   "key": "RY|0.25|L1|RZRY|CZ[74]|Z",
+   "acc_val": 0.7179487347602844,
+   "acc_train": 0.798701286315918,
+   "gap": 0.0014999999999999458,
+   "n_params": 106,
+   "descriptor": [
+    1,
+    1
+   ],
+   "order": 152,
+   "in_final_pop": false,
+   "test_acc": 0.7651323080062866
+  },
+  {
+   "key": "RY|0.25|L3|RZRY|CNOT[27-31-36-43-71-23-06-21-10]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8246753215789795,
+   "gap": 0.07137499999999997,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    2
+   ],
+   "order": 153,
+   "in_final_pop": false,
+   "test_acc": 0.7564334869384766
+  },
+  {
+   "key": "RY|0.25|L2|RZRY|CZ[40-06-25-74]|ZZ",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8831169009208679,
+   "gap": 0.04212499999999994,
+   "n_params": 162,
+   "descriptor": [
+    2,
+    1
+   ],
+   "order": 154,
+   "in_final_pop": false,
+   "test_acc": 0.7731062173843384
+  },
+  {
+   "key": "RX|0.25|L3|RZRY|CNOT[25-23-73]|Z",
+   "acc_val": 0.7435897588729858,
+   "acc_train": 0.8441558480262756,
+   "gap": 0.06024999999999997,
+   "n_params": 138,
+   "descriptor": [
+    3,
+    1
+   ],
+   "order": 155,
+   "in_final_pop": false,
+   "test_acc": 0.7524465322494507
+  }
+ ],
+ "parasites": [
+  {
+   "kind": "rff",
+   "m_frac": 0.25,
+   "order": 1,
+   "sigma": 0.5,
+   "alpha": 0.001,
+   "seed": 874268231
+  },
+  {
+   "kind": "fourier",
+   "m_frac": 0.25,
+   "order": 2,
+   "sigma": 2.0,
+   "alpha": 0.1,
+   "seed": 782285908
+  },
+  {
+   "kind": "rff",
+   "m_frac": 0.25,
+   "order": 3,
+   "sigma": 0.25,
+   "alpha": 0.01,
+   "seed": 295246110
+  },
+  {
+   "kind": "fourier",
+   "m_frac": 0.5,
+   "order": 1,
+   "sigma": 1.0,
+   "alpha": 0.001,
+   "seed": 161128128
+  },
+  {
+   "kind": "rff",
+   "m_frac": 0.5,
+   "order": 3,
+   "sigma": 2.0,
+   "alpha": 0.1,
+   "seed": 453961586
+  },
+  {
+   "kind": "fourier",
+   "m_frac": 0.5,
+   "order": 3,
+   "sigma": 4.0,
+   "alpha": 0.1,
+   "seed": 733435268
+  },
+  {
+   "kind": "fourier",
+   "m_frac": 0.5,
+   "order": 1,
+   "sigma": 0.25,
+   "alpha": 0.001,
+   "seed": 371472436
+  },
+  {
+   "kind": "rff",
+   "m_frac": 0.5,
+   "order": 3,
+   "sigma": 4.0,
+   "alpha": 0.1,
+   "seed": 832755442
+  }
+ ],
+ "archive": {
+  "(1, 1)": "RY|0.25|L1|RZRY|CZ[40-06-25-74]|ZZ",
+  "(3, 2)": "RY|0.25|L3|RZRY|CZ[70-27-31-37-40-06-56-25-34-45-74]|Z",
+  "(2, 1)": "RY|0.25|L2|RZRY|CNOT[10-40-06]|ZZ",
+  "(3, 0)": "RY|0.5|L3|RZRY|CZ[]|ZZ",
+  "(1, 2)": "RY|0.5|L1|RZRYRZ|CZ[56-12-25-71-34-07-23-06-13-45]|ZZ",
+  "(3, 1)": "RY|0.25|L3|RY|CZ[21-10]|ZZ",
+  "(2, 2)": "RY|0.25|L2|RZRY|CZ[70-27-31-37-40-06-56-25-34-45-74]|ZZ"
+ },
+ "rejected_by_gate": 2,
+ "search_seconds": 277.3374910354614,
+ "seconds": 294.2990367412567
+}

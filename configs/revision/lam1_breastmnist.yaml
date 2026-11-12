@@ -1,0 +1,51 @@
+# Revision R1 (CMC 96001), generated from configs/paper_breastmnist.yaml: imitation weight lambda = 1 (Reviewer 4, point 1)
+features: features/breastmnist_resnet18.npz
+out_dir: results/revision/lam1_breastmnist
+view: resnet
+n_qubits: 8
+n_pool_fit: 117
+n_pool_eval: 78
+host_steps: 150
+host_lr: 0.05
+pop_size: 16
+generations: 10
+offspring: 14
+crossover_rate: 0.5
+use_archive: true
+gate_threshold: 0.0001
+gate_draws: 8
+parasite_pop: 8
+hof_size: 8
+parasite_m_panel:
+- 8
+- 16
+- 32
+- 64
+parasite_kinds:
+- fourier
+- rff
+lam: 1.0
+audit: true
+mlp_params:
+- 20
+- 40
+- 60
+- 100
+- 150
+- 300
+rff_m:
+- 8
+- 16
+- 32
+- 64
+methods:
+- redqueen
+budgets:
+- 0.25
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+n_pool_audit: 156

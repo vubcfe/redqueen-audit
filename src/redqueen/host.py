@@ -40,8 +40,13 @@ class QuantumHead(nn.Module):
             self._consts = (signs, cz)
         return self._consts
 
-    def expectations(self, x: torch.Tensor) -> torch.Tensor:
-        """Pauli expectations ``(B, n_obs)`` for standardised features ``x``."""
+    def expectations(self, x: torch.Tensor, final_entangler: bool = True) -> torch.Tensor:
+        """Pauli expectations ``(B, n_obs)`` for standardised features ``x``.
+
+        ``final_entangler=False`` omits the entangling gates of the last block.
+        For CZ they are diagonal and commute with every measured ``Z_i`` and
+        ``Z_a Z_b``, so the output is unchanged (tested); the option exists to
+        check that and is never used in training."""
         g = self.g
         signs, cz = self._constants(x.device)
         psi = sim.zero_state(x.shape[0], g.n, x.device)
@@ -53,6 +58,8 @@ class QuantumHead(nn.Module):
             for w in range(g.n):
                 for k, gate in enumerate(g.rot_gates):
                     psi = sim.apply_1q(psi, sim.ROT[gate](self.theta[layer, w, k]), w)
+            if not final_entangler and layer == g.layers - 1:
+                break
             for e, (a, b) in enumerate(g.edges):
                 psi = psi * cz[e] if g.ent_gate == "CZ" else sim.apply_cnot(psi, a, b)
         return sim.probabilities(psi) @ signs.T
